@@ -132,7 +132,7 @@ border-radius: 5px;</string>
              <string/>
             </property>
             <property name="placeholderText">
-             <string>Email</string>
+             <string>CPF</string>
             </property>
            </widget>
           </item>
