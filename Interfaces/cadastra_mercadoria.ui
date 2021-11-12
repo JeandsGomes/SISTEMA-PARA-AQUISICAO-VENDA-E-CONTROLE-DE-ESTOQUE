@@ -114,6 +114,26 @@ text-align: center;
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_5">
           <item>
+           <widget class="QLineEdit" name="lineEdit_6">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-width: 1px;
+border-color: black;
+border-style: solid;
+display: inline-block;
+border-radius: 5px;</string>
+            </property>
+            <property name="placeholderText">
+             <string>Numero da Bebida</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QLineEdit" name="lineEdit_3">
             <property name="minimumSize">
              <size>
@@ -133,26 +153,6 @@ border-radius: 5px;</string>
             </property>
             <property name="placeholderText">
              <string>Nome da Bebida</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="lineEdit_6">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">border-width: 1px;
-border-color: black;
-border-style: solid;
-display: inline-block;
-border-radius: 5px;</string>
-            </property>
-            <property name="placeholderText">
-             <string>Numero do Lote</string>
             </property>
            </widget>
           </item>
@@ -191,8 +191,11 @@ border-style: solid;
 display: inline-block;
 border-radius: 5px;</string>
             </property>
+            <property name="text">
+             <string/>
+            </property>
             <property name="placeholderText">
-             <string>Local de Fabricação</string>
+             <string>Data de Vencimento</string>
             </property>
            </widget>
           </item>
@@ -216,6 +219,18 @@ border-radius: 5px;</string>
             </property>
            </widget>
           </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_8">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_6">
           <item>
            <widget class="QLineEdit" name="lineEdit_8">
             <property name="minimumSize">
@@ -236,18 +251,6 @@ border-radius: 5px;</string>
             </property>
            </widget>
           </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QFrame" name="frame_8">
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_6">
           <item>
            <widget class="QLineEdit" name="lineEdit_9">
             <property name="minimumSize">
@@ -284,7 +287,7 @@ display: inline-block;
 border-radius: 5px;</string>
             </property>
             <property name="placeholderText">
-             <string>Valor de compra</string>
+             <string>Valor de compra Unidade</string>
             </property>
            </widget>
           </item>
@@ -304,27 +307,7 @@ display: inline-block;
 border-radius: 5px;</string>
             </property>
             <property name="placeholderText">
-             <string>Valor de re-venda</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="lineEdit_13">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">border-width: 1px;
-border-color: black;
-border-style: solid;
-display: inline-block;
-border-radius: 5px;</string>
-            </property>
-            <property name="placeholderText">
-             <string>Data de entrada do lote</string>
+             <string>Valor de re-venda Unidade</string>
             </property>
            </widget>
           </item>
@@ -344,7 +327,7 @@ display: inline-block;
 border-radius: 5px;</string>
             </property>
             <property name="placeholderText">
-             <string>Id do fornecedor</string>
+             <string>Id do Fornecedor</string>
             </property>
            </widget>
           </item>

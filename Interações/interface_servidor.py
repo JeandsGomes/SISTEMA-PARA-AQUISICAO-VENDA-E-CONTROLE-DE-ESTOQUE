@@ -1,5 +1,6 @@
 import socket
 import threading
+from cadastrar import Cadastro
 
 class ClientThread(threading.Thread):
 
@@ -80,7 +81,7 @@ class Servidor():
         um contador de contas cadastradas.
     '''
     def __init__(self):
-        #self._cadastro = Cadastro()
+        self._cadastro = Cadastro()
         self._n_conta = 0
 
     def pre_processamento(self,codigo):

@@ -8,52 +8,13 @@ class plataforma_funcionario():
         Todos as informações do objeto são inicializados
         e deixados vazios até ser adicionado informações.
     '''
-    __slots__ = ['_nome_completo','_cpf','_endereco','_data_de_nascimento','_email','_telefone','_cargo','_senha']
 
     def __init__(self):
-        self._nome_completo = ''
-        self._cpf = ''
-        self._endereco = ''
-        self._data_de_nascimento = ''
-        self._email = ''
-        self._telefone = ''
-        self._senha= ''
-
-    @property
-    def nome(self):
-        '''
-            retorna o nome do funcionario.
-        '''
-        return self._nome
-
-    @property
-    def cpf(self):
-        '''
-            retorna o cpf do funcionario.
-        '''
-        return self._cpf
-
-    @property
-    def data_de_nascimento(self):
-        '''
-            retorna a data de nascimento do funcionario.
-        '''
-        return self._data_de_nascimento
-
-    @property
-    def email(self):
-        '''
-            retorna o email do funcionario.
-        '''
-        return self._email
-
-    @property
-    def telefone(self):
-        '''
-            retorna o telefone do funcionario.
-        '''
-        return self._telefone
-
+        self.funcionario = []
+        self.vendas_todas = []
+        self.fornecedor_todos = []
+        self.cliente_todos = []
+        self.prdotos_todas = []
 
     def conecxao_servidor(self,codigo):
         '''
@@ -77,12 +38,12 @@ class plataforma_funcionario():
 
         return saida
 
-    def cadastro_funcionario(self,nome_completo,cpf,endereco,data_de_nascimento,email,telefone,senha):
+    def cadastro_funcionario(self,nome,CPF,data_de_nascimento,email,telefone,Cargo,senha):
         '''
             Para cadastrar uma pessoa é preciso se conectar ao servidor do banco.
 
         '''
-        codigo = '0/'+nome_completo+'/'+cpf+'/'+endereco+'/'+data_de_nascimento+'/'+email+'/'+telefone+'/'+senha
+        codigo = '0/'+nome+'/'+str(CPF)+'/'+data_de_nascimento+'/'+email+'/'+telefone+'/'+Cargo+'/'+senha
         try:
             saida = self.conecxao_servidor(codigo)
         except:
@@ -106,13 +67,28 @@ class plataforma_funcionario():
         saida_lst = saida.split('/')
         
         if(saida_lst[0]=='1'):
-            self._nome_completo = saida_lst[1]
-            self._cpf = saida_lst[2]
-            self._endereco = saida_lst[3]
-            self._data_de_nascimento = saida_lst[4]
-            self._email = saida_lst[5]
-            self._telefone = saida_lst[6]
-            #self._senha= saida_lst[7]
+            self.funcionario.append(saida_lst)
+            print(self.funcionario)
+
+            return True
+        return False
+
+    def mostrar_todas_as_vendas(self,vendas_ja_armazenadas):
+        '''
+            retorna a lista com as vendas feitas.
+        '''
+        codigo = '2/'+vendas_ja_armazenadas
+        try:
+            saida = self.conecxao_servidor(codigo)
+            
+        except:
+            return False
+        saida_lst = saida.split('/')
+        
+        if(saida_lst[0]=='1'):
+            for i in range(0,int(saida_lst[1])):
+                self.funcionario.append(saida_lst)
+            print(self.funcionario)
 
             return True
         return False
