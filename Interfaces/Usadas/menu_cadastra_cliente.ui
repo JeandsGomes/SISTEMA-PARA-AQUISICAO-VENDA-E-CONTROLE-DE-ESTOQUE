@@ -69,6 +69,9 @@
        <enum>QFrame::Raised</enum>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="topMargin">
+        <number>9</number>
+       </property>
        <item>
         <widget class="QFrame" name="frame_3">
          <property name="maximumSize">
@@ -142,7 +145,7 @@ QLineEdit{
         </widget>
        </item>
        <item>
-        <widget class="QFrame" name="frame_12">
+        <widget class="QFrame" name="frame_11">
          <property name="maximumSize">
           <size>
            <width>16777215</width>
@@ -155,9 +158,9 @@ QLineEdit{
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_9">
+         <layout class="QVBoxLayout" name="verticalLayout_7">
           <item>
-           <widget class="QPushButton" name="pushButton_cadastro_cadastrar_13">
+           <widget class="QPushButton" name="pushButton_vendas">
             <property name="minimumSize">
              <size>
               <width>100</width>
@@ -243,7 +246,7 @@ QPushButton:pressed{
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_cadastro_cadastrar_10">
+           <widget class="QPushButton" name="pushButton_cadastra_cliente">
             <property name="minimumSize">
              <size>
               <width>100</width>
@@ -294,7 +297,7 @@ QPushButton:pressed{
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_cadastro_cadastrar_4">
+           <widget class="QPushButton" name="pushButton_atualiza_cliente">
             <property name="minimumSize">
              <size>
               <width>100</width>
@@ -374,7 +377,7 @@ QPushButton:pressed{
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_cadastro_cadastrar_12">
+           <widget class="QPushButton" name="pushButton_cadastra_fornecedor">
             <property name="minimumSize">
              <size>
               <width>100</width>
@@ -425,7 +428,7 @@ QPushButton:pressed{
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_cadastro_cadastrar_11">
+           <widget class="QPushButton" name="pushButton_atualiza_fornecedor">
             <property name="minimumSize">
              <size>
               <width>100</width>
@@ -505,7 +508,7 @@ QPushButton:pressed{
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_cadastro_cadastrar_16">
+           <widget class="QPushButton" name="pushButton_cadastra_produto">
             <property name="minimumSize">
              <size>
               <width>100</width>
@@ -556,7 +559,7 @@ QPushButton:pressed{
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_cadastro_cadastrar_15">
+           <widget class="QPushButton" name="pushButton_atualiza_produto">
             <property name="minimumSize">
              <size>
               <width>100</width>
@@ -623,7 +626,7 @@ QPushButton:pressed{
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <widget class="QPushButton" name="pushButton_cadastro_cadastrar_6">
+         <widget class="QPushButton" name="pushButton_sair">
           <property name="geometry">
            <rect>
             <x>10</x>
@@ -699,28 +702,28 @@ QPushButton:pressed{
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QTextEdit" name="textEdit">
+      <widget class="QTextEdit" name="textEdit_tabela_cliente">
        <property name="geometry">
         <rect>
          <x>20</x>
          <y>40</y>
          <width>401</width>
-         <height>91</height>
+         <height>161</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">border-radius: 5px;
 padding 15px;
 background-color: rgb(221,221,221);
-color: rgb(255, 255, 255);</string>
+color: rgb(0, 0, 0);</string>
        </property>
       </widget>
       <widget class="QLabel" name="label">
        <property name="geometry">
         <rect>
-         <x>190</x>
+         <x>130</x>
          <y>10</y>
-         <width>61</width>
+         <width>171</width>
          <height>16</height>
         </rect>
        </property>
@@ -730,102 +733,16 @@ color: rgb(255, 255, 255);</string>
         </font>
        </property>
        <property name="text">
-        <string>Vinhos</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_2">
-       <property name="geometry">
-        <rect>
-         <x>110</x>
-         <y>160</y>
-         <width>181</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border-width: 1px;
-border-color: black;
-border-style: solid;
-display: inline-block;
-border-radius: 5px;</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="placeholderText">
-        <string>Numero da Bibida</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_cadastro_cadastrar_7">
-       <property name="geometry">
-        <rect>
-         <x>300</x>
-         <y>160</y>
-         <width>50</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>50</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>50</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="cursor">
-        <cursorShape>PointingHandCursor</cursorShape>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	border-radius: 10px;
-	border-image: url(:/Close_Image/cil-x.png);
-	background-position: center;
-		
-	color: rgb(240, 233, 249);
-	background-color: rgb(255, 144, 14);
-	
-}
-QPushButton:hover{
-	
-	
-	background-color: rgb(207, 110, 0);
-	color: rgb(240, 233, 249);
-}
-QPushButton:pressed{
-	background-color: rgb(35, 35, 35);
-	color: rgb(200, 200, 200);
-}
-
-</string>
-       </property>
-       <property name="text">
-        <string>Buscar</string>
+        <string>Clientes cadastrados</string>
        </property>
       </widget>
       <widget class="QFrame" name="frame_6">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>190</y>
+         <y>240</y>
          <width>421</width>
-         <height>281</height>
+         <height>231</height>
         </rect>
        </property>
        <property name="frameShape">
@@ -834,127 +751,13 @@ QPushButton:pressed{
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
        </property>
-       <widget class="QPushButton" name="pushButton_cadastro_cadastrar_9">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>230</y>
-          <width>161</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>50</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton{
-	border-radius: 10px;
-	border-image: url(:/Close_Image/cil-x.png);
-	background-position: center;
-		
-	color: rgb(240, 233, 249);
-	background-color: rgb(255, 144, 14);
-	
-}
-QPushButton:hover{
-	
-	
-	background-color: rgb(207, 110, 0);
-	color: rgb(240, 233, 249);
-}
-QPushButton:pressed{
-	background-color: rgb(35, 35, 35);
-	color: rgb(200, 200, 200);
-}
-
-</string>
-        </property>
-        <property name="text">
-         <string>Atualizar Fornecedor</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_cadastro_cadastrar_17">
-        <property name="geometry">
-         <rect>
-          <x>250</x>
-          <y>230</y>
-          <width>161</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>50</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton{
-	border-radius: 10px;
-	border-image: url(:/Close_Image/cil-x.png);
-	background-position: center;
-		
-	color: rgb(240, 233, 249);
-	background-color: rgb(255, 144, 14);
-	
-}
-QPushButton:hover{
-	
-	
-	background-color: rgb(207, 110, 0);
-	color: rgb(240, 233, 249);
-}
-QPushButton:pressed{
-	background-color: rgb(35, 35, 35);
-	color: rgb(200, 200, 200);
-}
-
-</string>
-        </property>
-        <property name="text">
-         <string>Remover Fornecedor</string>
-        </property>
-       </widget>
        <widget class="QFrame" name="frame_9">
         <property name="geometry">
          <rect>
           <x>10</x>
           <y>10</y>
           <width>401</width>
-          <height>214</height>
+          <height>151</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -963,246 +766,239 @@ QPushButton:pressed{
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_3">
-         <item>
-          <widget class="QFrame" name="frame_11">
-           <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Raised</enum>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_8">
-            <item>
-             <widget class="QLineEdit" name="lineEdit_6">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>30</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">border-width: 1px;
+        <widget class="QFrame" name="login_conteudo">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>191</width>
+           <height>122</height>
+          </rect>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>600</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(242, 242, 243);</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QLineEdit" name="lineEdit_nome_completo">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-width: 1px;
 border-color: black;
 border-style: solid;
 display: inline-block;
 border-radius: 5px;</string>
-              </property>
-              <property name="placeholderText">
-               <string>Numero da Bebida (Remoção)</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="lineEdit_3">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>30</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">border-width: 1px;
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="placeholderText">
+             <string>Nome completo</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_cpf">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-width: 1px;
 border-color: black;
 border-style: solid;
 display: inline-block;
 border-radius: 5px;</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="placeholderText">
-               <string>Nome da Bebida</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="lineEdit_7">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>30</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">border-width: 1px;
+            </property>
+            <property name="placeholderText">
+             <string>CPF</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_endereco">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-width: 1px;
 border-color: black;
 border-style: solid;
 display: inline-block;
 border-radius: 5px;</string>
-              </property>
-              <property name="placeholderText">
-               <string>Data de fabricação</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="lineEdit_14">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>30</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">border-width: 1px;
+            </property>
+            <property name="placeholderText">
+             <string>Endereco</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QFrame" name="frame_10">
+         <property name="geometry">
+          <rect>
+           <x>211</x>
+           <y>10</y>
+           <width>181</width>
+           <height>122</height>
+          </rect>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QLineEdit" name="lineEdit_data_nascimento">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-width: 1px;
 border-color: black;
 border-style: solid;
 display: inline-block;
 border-radius: 5px;</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="placeholderText">
-               <string>Data de Vencimento</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="lineEdit_15">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>30</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">border-width: 1px;
+            </property>
+            <property name="placeholderText">
+             <string>Data Nascimento</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_email">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-width: 1px;
 border-color: black;
 border-style: solid;
 display: inline-block;
 border-radius: 5px;</string>
-              </property>
-              <property name="placeholderText">
-               <string>Condições de armazenamento</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item>
-          <widget class="QFrame" name="frame_10">
-           <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Raised</enum>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_7">
-            <item>
-             <widget class="QLineEdit" name="lineEdit_8">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>30</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">border-width: 1px;
+            </property>
+            <property name="placeholderText">
+             <string>Email</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_n_telefone">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-width: 1px;
 border-color: black;
 border-style: solid;
 display: inline-block;
 border-radius: 5px;</string>
-              </property>
-              <property name="placeholderText">
-               <string>Quantidade</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="lineEdit_9">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>30</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">border-width: 1px;
-border-color: black;
-border-style: solid;
-display: inline-block;
-border-radius: 5px;</string>
-              </property>
-              <property name="placeholderText">
-               <string>Local de Armazenamento</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="lineEdit_10">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>30</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">border-width: 1px;
-border-color: black;
-border-style: solid;
-display: inline-block;
-border-radius: 5px;</string>
-              </property>
-              <property name="placeholderText">
-               <string>Valor de compra Unidade</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="lineEdit_12">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>30</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">border-width: 1px;
-border-color: black;
-border-style: solid;
-display: inline-block;
-border-radius: 5px;</string>
-              </property>
-              <property name="placeholderText">
-               <string>Valor de re-venda Unidade</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="lineEdit_11">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>30</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">border-width: 1px;
-border-color: black;
-border-style: solid;
-display: inline-block;
-border-radius: 5px;</string>
-              </property>
-              <property name="placeholderText">
-               <string>Id do Fornecedor</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-        </layout>
+            </property>
+            <property name="placeholderText">
+             <string>Numero de Telefone</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+       <widget class="QPushButton" name="pushButton_cadastrar_cliente">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>170</y>
+          <width>230</width>
+          <height>50</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>230</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+	border-radius: 10px;
+	border-image: url(:/Close_Image/cil-x.png);
+	background-position: center;
+		
+	color: rgb(240, 233, 249);
+	background-color: rgb(255, 144, 14);
+	
+}
+QPushButton:hover{
+	
+	
+	background-color: rgb(207, 110, 0);
+	color: rgb(240, 233, 249);
+}
+QPushButton:pressed{
+	background-color: rgb(35, 35, 35);
+	color: rgb(200, 200, 200);
+}
+
+</string>
+        </property>
+        <property name="text">
+         <string>Cadastrar Cliente</string>
+        </property>
        </widget>
       </widget>
       <widget class="QLabel" name="label_2">
        <property name="geometry">
         <rect>
-         <x>70</x>
-         <y>140</y>
-         <width>301</width>
+         <x>150</x>
+         <y>220</y>
+         <width>141</width>
          <height>16</height>
         </rect>
        </property>
@@ -1212,7 +1008,41 @@ border-radius: 5px;</string>
         </font>
        </property>
        <property name="text">
-        <string>Atualizar, Remoção ou Buscar Vinhos</string>
+        <string>Cadastrar Cliente</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_mostrar_mais">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>200</y>
+         <width>230</width>
+         <height>13</height>
+        </rect>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border-radius: 5px;
+	border-image: url(:/Close_Image/cil-x.png);
+	background-position: center;
+	
+	color: rgb(0,127,255);
+}
+
+
+</string>
+       </property>
+       <property name="text">
+        <string>Mostrar mais ...</string>
        </property>
       </widget>
      </widget>

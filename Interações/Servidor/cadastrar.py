@@ -130,9 +130,10 @@ ENGINE = InnoDB;"""
             cursor = conexao.cursor()
 
             sql = """CREATE TABLE IF NOT EXISTS `mydb`.`Vendas` (
-  `idVendas` INT NOT NULL,
+  `idVendas` INT NOT NULL AUTO_INCREMENT,
   `forma_de_pagamento` VARCHAR(100) NOT NULL,
   `data_da_venda` VARCHAR(100) NOT NULL,
+  `valor_da_compra` VARCHAR(45) NOT NULL,
   `Produto_idproduto` INT NOT NULL,
   `Cliete_idCliete` INT NOT NULL,
   `Funcionari_idFuncionari` INT NOT NULL,
@@ -302,6 +303,39 @@ ENGINE = InnoDB;"""
             print("Falha ao buscar fornecedor: {}".format(erro))
             return False
 
+    def sqlite_readSec_fornecedor_id(self,cpf):
+        try:
+            if(True):
+                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                cursor = conexao.cursor()
+                cursor.execute('SELECT * FROM `fornecedor` WHERE idFornecedor= %s'%int(cpf))
+                usuario = cursor.fetchall()
+                print('usuario')
+                print(usuario)
+                
+                if (usuario!=[]):
+                    #print(usuario)
+                    #print(usuario)
+                    #cliente_novo = Cliente(usuario[0][2],usuario[0][3],cpf)
+                    #banco_novo = Banco(int(usuario[0][1]),cliente_novo,float(usuario[0][5]),float(usuario[0][6]),usuario[0][8])
+                        
+                    #usuario[0][7].split('--')
+                           
+                    #banco_novo.historico.transacoes.append (usuario[0][7])
+                    #banco_novo.historico.data_abertura = usuario[0][8]
+                    conexao.commit()
+                    conexao.close()
+
+                    return usuario
+                
+                conexao.commit()
+                conexao.close()
+                return False
+
+        except Error as erro:
+            print("Falha ao buscar fornecedor: {}".format(erro))
+            return False
+
     def sqlite_readSec_fornecedor_todos(self):
         try:
             if(True):
@@ -412,6 +446,34 @@ ENGINE = InnoDB;"""
             print("Falha ao buscar funcionario: {}".format(erro))
             return False
 
+    def sqlite_read_funcionario_cpf(self,cpf):
+        try:
+            if(True):
+                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                cursor = conexao.cursor()
+
+                cursor.execute("SELECT * FROM `funcionari` WHERE CPF=%s" %(cpf))
+                usuario = cursor.fetchall()
+                
+               
+                
+                if (usuario!=[]):
+
+                    #print(usuario)
+
+                    conexao.commit()
+                    conexao.close()
+                   
+                    return usuario
+
+                conexao.commit()
+                conexao.close()
+                return False
+
+        except Error as erro:
+            print("Falha ao buscar funcionario: {}".format(erro))
+            return False
+
 
     def sqlite_create_produto(self,n_bebida,nome_da_bebida,data_de_fabricacao,data_de_validade,condicoes_de_armazenamento,quantidades,local_armazenado,valor_de_compra_UN,valor_revenda_UN,cnpj_fornecedor):
         
@@ -427,7 +489,7 @@ ENGINE = InnoDB;"""
             bd_valor_revenda_UN = str(valor_revenda_UN)
             fornecedor = self.sqlite_readSec_fornecedor(cnpj_fornecedor)          
 
-            if(fornecedor != []):
+            if(fornecedor != False):
 
                 conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
                 cursor = conexao.cursor()
@@ -501,49 +563,108 @@ ENGINE = InnoDB;"""
             return False
 
 
-    def sqlite_create_venda(self,forma_de_pagamento,data_da_venda,nome_bebida,cpf_cliente,cpf_funcionario,senha_funcionario):
+
+
+    def sqlite_create_venda(self,forma_de_pagamento,data_da_venda,n_bebida,cpf_cliente,cpf_funcionario,senha_funcionario):
         
         try:
 
             bd_forma_de_pagamento = str(forma_de_pagamento)
             bd_data_da_venda = str(data_da_venda)
-            produto = self.sqlite_read_produto(nome_bebida)
+            produto = self.sqlite_read_produto(n_bebida)
+            print(produto)
             cliente = self.sqlite_readSec_cliente(cpf_cliente)
+            print(cliente)
             funcioanrio = self.sqlite_read_funcionario(cpf_funcionario,senha_funcionario)
-
+            print(funcioanrio)
+            valor_da_compra = float(produto[0][9])
+            print(valor_da_compra)
             
 
-            if(cliente != [] and funcioanrio != [] and produto != []):
+            if(cliente != False and funcioanrio != False and produto != False and int(produto[0][6]) >= 1):
 
                 conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
                 cursor = conexao.cursor()
 
                 print(cliente[0][0])
                 print(funcioanrio[0][0])
-                cursor.execute('INSERT INTO Vendas (forma_de_pagamento,data_da_venda,Produto_idproduto,Cliete_idCliete,Funcionari_idFuncionari) VALUES (%s,%s,%s,%s,%s)' , (bd_forma_de_pagamento,bd_data_da_venda,produto[0][0],cliente[0][0],funcioanrio[0][0]))
+                cursor.execute('INSERT INTO Vendas (forma_de_pagamento,data_da_venda,Produto_idproduto,Cliete_idCliete,Funcionari_idFuncionari,valor_da_compra) VALUES (%s,%s,%s,%s,%s,%s)' , (bd_forma_de_pagamento,bd_data_da_venda,produto[0][0],cliente[0][0],funcioanrio[0][0],str(valor_da_compra)))
 
                 conexao.commit()
                 conexao.close()
 
                 nova_quantidade = int(produto[0][6]) - 1
-                self.sqlite_update_produto_crinado_venda(nome_bebida,nova_quantidade)
+                self.sqlite_update_produto_crinado_venda(n_bebida,nova_quantidade)
 
                 return True
 
             else:
                 print('Não foi possivel cadastrar a venda pois o cliente, ou produto informado não estao cadastrado')
+                return False
 
         except Error as erro:
             print("Falha ao inserir dados na tabela vendas: {}".format(erro))
             return False
 
-    def sqlite_read_venda(self):
+    def sqlite_read_venda_todas(self):
         try:
             if(True):
                 conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
                 cursor = conexao.cursor()
 
                 cursor.execute("SELECT * FROM `vendas`")
+                usuario = cursor.fetchall()
+                
+                if (usuario!=[]):
+
+                    print(usuario)
+
+                    conexao.commit()
+                    conexao.close()
+                   
+                    return usuario
+
+                conexao.commit()
+                conexao.close()
+                return False
+
+        except Error as erro:
+            print("Falha ao buscar vendas: {}".format(erro))
+            return False
+
+    def sqlite_read_venda_cliente(self,id_cliente):
+        try:
+            if(True):
+                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                cursor = conexao.cursor()
+
+                cursor.execute("SELECT * FROM `vendas` WHERE Cliete_idCliete = %s" %(id_cliente))
+                usuario = cursor.fetchall()
+                
+                if (usuario!=[]):
+
+                    print(usuario)
+
+                    conexao.commit()
+                    conexao.close()
+                   
+                    return usuario
+
+                conexao.commit()
+                conexao.close()
+                return False
+
+        except Error as erro:
+            print("Falha ao buscar vendas: {}".format(erro))
+            return False
+
+    def sqlite_read_venda_funcionario(self,id_funcionario):
+        try:
+            if(True):
+                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                cursor = conexao.cursor()
+
+                cursor.execute("SELECT * FROM `vendas` WHERE Funcionari_idFuncionari = %s" %(id_funcionario))
                 usuario = cursor.fetchall()
                 
                 if (usuario!=[]):
@@ -598,7 +719,9 @@ ENGINE = InnoDB;"""
             bd_local_armazenado = str(local_armazenado)
             bd_valor_de_compra_UN = str(valor_de_compra_UN)
             bd_valor_revenda_UN = str(valor_revenda_UN)
-            fornecedor = self.sqlite_readSec_fornecedor(cnpj_fornecedor)          
+            fornecedor = self.sqlite_readSec_fornecedor_id(cnpj_fornecedor)
+            print('Fornecedor')
+            print(self.produto)
 
             if(fornecedor != []):
 

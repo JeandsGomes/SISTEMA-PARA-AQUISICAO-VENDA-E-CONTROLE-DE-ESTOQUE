@@ -102,7 +102,7 @@ text-align: center;
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
-        <widget class="QLineEdit" name="lineEdit_2">
+        <widget class="QLineEdit" name="cadastro_lineEdit_nome_completo">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -122,7 +122,7 @@ border-radius: 5px;</string>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit">
+        <widget class="QLineEdit" name="cadastro_lineEdit_cpf">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -142,27 +142,7 @@ border-radius: 5px;</string>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_4">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">border-width: 1px;
-border-color: black;
-border-style: solid;
-display: inline-block;
-border-radius: 5px;</string>
-         </property>
-         <property name="placeholderText">
-          <string>Endereço</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="lineEdit_5">
+        <widget class="QLineEdit" name="cadastro_lineEdit_data_nascimento">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -182,7 +162,7 @@ border-radius: 5px;</string>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_6">
+        <widget class="QLineEdit" name="cadastro_lineEdit_email">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -202,7 +182,7 @@ border-radius: 5px;</string>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_7">
+        <widget class="QLineEdit" name="cadastro_lineEdit_telefone">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -222,7 +202,27 @@ border-radius: 5px;</string>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_3">
+        <widget class="QLineEdit" name="cadastro_lineEdit_telefone_2">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-width: 1px;
+border-color: black;
+border-style: solid;
+display: inline-block;
+border-radius: 5px;</string>
+         </property>
+         <property name="placeholderText">
+          <string>Cargo</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="cadastro_lineEdit_senha">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -297,7 +297,7 @@ border-radius: 5px;</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QPushButton" name="pushButton_cadastro_cadastrar">
+           <widget class="QPushButton" name="cadastro_pushButton_cadastrar">
             <property name="minimumSize">
              <size>
               <width>230</width>

@@ -3,18 +3,18 @@ from cadastrar import Cadastro
 cadastro = Cadastro()
 
 #CADASTRO
-cadastro.sqlite_create_fornecedor('Sao_geraldo',1,'Beasil','Rua Maria','089994353256','Maria')
-cadastro.sqlite_create_fornecedor('Corote',3,'Beasil','Rua Maria','089994353256','Maria')
-print(cadastro.sqlite_readSec_fornecedor_todos())
+#cadastro.sqlite_create_fornecedor('Sao_geraldo',1,'Beasil','Rua Maria','089994353256','Maria')
+#cadastro.sqlite_create_fornecedor('Corote',3,'Beasil','Rua Maria','089994353256','Maria')
+#print(cadastro.sqlite_readSec_fornecedor_todos())
 #ATUALIZAÇÃO
-print(cadastro.sqlite_readSec_fornecedor(1))
-cadastro.sqlite_update_fornecedor('Seu_geraldo',1,'Beasil','Rua Maria','089994353256','Maria')
-print(cadastro.sqlite_readSec_fornecedor(1))
+#print(cadastro.sqlite_readSec_fornecedor(1))
+#cadastro.sqlite_update_fornecedor('Seu_geraldo',1,'Beasil','Rua Maria','089994353256','Maria')
+#print(cadastro.sqlite_readSec_fornecedor(1))
 #REMOCAO
-cadastro.sqlite_create_fornecedor('Montes',4,'Beasil','Rua Cherindro','089994353256','Maria')
-print(cadastro.sqlite_readSec_fornecedor_todos())
-cadastro.sqlite_remove_fornecedor(4)
-print(cadastro.sqlite_readSec_fornecedor_todos())
+#cadastro.sqlite_create_fornecedor('Montes',4,'Beasil','Rua Cherindro','089994353256','Maria')
+#print(cadastro.sqlite_readSec_fornecedor_todos())
+#cadastro.sqlite_remove_fornecedor(4)
+#print(cadastro.sqlite_readSec_fornecedor_todos())
 
 #CADASTRO
 #cadastro.sqlite_create_cliente('Jeanderson',1,'Av.Maria Lina','07-03-2000','jenander@gmail.com','089994353256')
@@ -47,5 +47,5 @@ print(cadastro.sqlite_readSec_fornecedor_todos())
 #cadastro.sqlite_remove_produto('4')
 #print(cadastro.sqlite_read_produto_todos())
 
-#cadastro.sqlite_create_venda('Catao','10-09-2000','3',1,1,'123')
-#cadastro.sqlite_read_venda()
+#cadastro.sqlite_create_venda('Catao','10-09-2000','2',1,1,'123')
+cadastro.sqlite_read_venda_todas()

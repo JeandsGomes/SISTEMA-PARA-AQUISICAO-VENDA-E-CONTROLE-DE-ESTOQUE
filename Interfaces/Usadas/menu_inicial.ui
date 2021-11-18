@@ -160,7 +160,7 @@ QLineEdit{
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_7">
           <item>
-           <widget class="QPushButton" name="pushButton_cadastro_cadastrar_13">
+           <widget class="QPushButton" name="pushButton_vendas">
             <property name="minimumSize">
              <size>
               <width>100</width>
@@ -246,7 +246,7 @@ QPushButton:pressed{
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_cadastro_cadastrar_10">
+           <widget class="QPushButton" name="pushButton_cadastra_cliente">
             <property name="minimumSize">
              <size>
               <width>100</width>
@@ -297,7 +297,7 @@ QPushButton:pressed{
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_cadastro_cadastrar_4">
+           <widget class="QPushButton" name="pushButton_atualiza_cliente">
             <property name="minimumSize">
              <size>
               <width>100</width>
@@ -377,7 +377,7 @@ QPushButton:pressed{
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_cadastro_cadastrar_12">
+           <widget class="QPushButton" name="pushButton_cadastra_fornecedor">
             <property name="minimumSize">
              <size>
               <width>100</width>
@@ -428,7 +428,7 @@ QPushButton:pressed{
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_cadastro_cadastrar_11">
+           <widget class="QPushButton" name="pushButton_atualiza_fornecedor">
             <property name="minimumSize">
              <size>
               <width>100</width>
@@ -508,7 +508,7 @@ QPushButton:pressed{
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_cadastro_cadastrar_16">
+           <widget class="QPushButton" name="pushButton_cadastra_produto">
             <property name="minimumSize">
              <size>
               <width>100</width>
@@ -559,7 +559,7 @@ QPushButton:pressed{
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_cadastro_cadastrar_15">
+           <widget class="QPushButton" name="pushButton_atualiza_produto">
             <property name="minimumSize">
              <size>
               <width>100</width>
@@ -626,7 +626,7 @@ QPushButton:pressed{
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <widget class="QPushButton" name="pushButton_cadastro_cadastrar_6">
+         <widget class="QPushButton" name="pushButton_sair">
           <property name="geometry">
            <rect>
             <x>10</x>
@@ -702,20 +702,20 @@ QPushButton:pressed{
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QTextEdit" name="textEdit">
+      <widget class="QTextEdit" name="textEdit_tabela_vendas">
        <property name="geometry">
         <rect>
          <x>20</x>
          <y>40</y>
          <width>401</width>
-         <height>171</height>
+         <height>151</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">border-radius: 5px;
 padding 15px;
 background-color: rgb(221,221,221);
-color: rgb(255, 255, 255);</string>
+color: rgb(0, 0, 0);</string>
        </property>
       </widget>
       <widget class="QLabel" name="label">
@@ -771,7 +771,7 @@ color: rgb(255, 255, 255);</string>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item>
-            <widget class="QLineEdit" name="lineEdit_3">
+            <widget class="QLineEdit" name="lineEdit_index_bebida">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -794,7 +794,7 @@ border-radius: 5px;</string>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit">
+            <widget class="QLineEdit" name="lineEdit_quabtidade">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -814,7 +814,7 @@ border-radius: 5px;</string>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_4">
+            <widget class="QLineEdit" name="lineEdit_index_cliente">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -834,7 +834,7 @@ border-radius: 5px;</string>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_5">
+            <widget class="QLineEdit" name="lineEdit_index_forma_pagamento">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -857,7 +857,7 @@ border-radius: 5px;</string>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_cadastro_cadastrar_9">
+         <widget class="QPushButton" name="pushButton_realizar_venda">
           <property name="minimumSize">
            <size>
             <width>230</width>
@@ -925,6 +925,40 @@ QPushButton:pressed{
        </property>
        <property name="text">
         <string>Realizar venda</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_mostrar_mais">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>200</y>
+         <width>230</width>
+         <height>13</height>
+        </rect>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border-radius: 5px;
+	border-image: url(:/Close_Image/cil-x.png);
+	background-position: center;
+	
+	color: rgb(0,127,255);
+}
+
+
+</string>
+       </property>
+       <property name="text">
+        <string>Mostrar mais ...</string>
        </property>
       </widget>
      </widget>

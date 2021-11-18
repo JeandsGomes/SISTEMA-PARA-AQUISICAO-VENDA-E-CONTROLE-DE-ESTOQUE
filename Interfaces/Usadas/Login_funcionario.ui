@@ -105,7 +105,7 @@ text-align: center;
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_4">
           <item>
-           <widget class="QLineEdit" name="lineEdit_login_email">
+           <widget class="QLineEdit" name="login_lineEdit_cpf">
             <property name="minimumSize">
              <size>
               <width>250</width>
@@ -137,7 +137,7 @@ border-radius: 5px;</string>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_2">
+           <widget class="QLineEdit" name="login_lineEdit_senha">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -212,7 +212,7 @@ border-radius: 5px;</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_2">
              <item>
-              <widget class="QPushButton" name="pushButton_cadastro_cadastrar">
+              <widget class="QPushButton" name="login_pushButton_logar">
                <property name="minimumSize">
                 <size>
                  <width>230</width>
@@ -263,7 +263,7 @@ QPushButton:pressed{
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_cadastro_entrar_login">
+              <widget class="QPushButton" name="login_pushButton_entrar_cadastro">
                <property name="maximumSize">
                 <size>
                  <width>300</width>
