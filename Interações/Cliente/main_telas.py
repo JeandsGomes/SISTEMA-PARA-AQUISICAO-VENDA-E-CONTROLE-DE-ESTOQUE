@@ -208,7 +208,7 @@ class Main(QMainWindow,Ui_Main):
             else:
                 QMessageBox.information(None, 'Cadastro Funcioanrio', 'Nao foi possivel realizar o cadastro!')
                 self.tela_cadastro.cadastro_lineEdit_nome_completo.setText('')
-                self.tela_cadastro.cadastro_lineEdit_cpf.setText('')
+                self.tela_cadastro..setcadastro_lineEdit_cpfText('')
                 self.tela_cadastro.cadastro_lineEdit_data_nascimento.setText('')
                 self.tela_cadastro.cadastro_lineEdit_email.setText('')
                 self.tela_cadastro.cadastro_lineEdit_telefone.setText('')
