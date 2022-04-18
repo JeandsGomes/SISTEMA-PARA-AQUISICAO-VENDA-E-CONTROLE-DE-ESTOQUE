@@ -208,7 +208,7 @@ class Main(QMainWindow,Ui_Main):
             else:
                 QMessageBox.information(None, 'Cadastro Funcioanrio', 'Nao foi possivel realizar o cadastro!')
                 self.tela_cadastro.cadastro_lineEdit_nome_completo.setText('')
-                self.tela_cadastro..setcadastro_lineEdit_cpfText('')
+                self.tela_cadastro.cadastro_lineEdit_cpf.setText('')
                 self.tela_cadastro.cadastro_lineEdit_data_nascimento.setText('')
                 self.tela_cadastro.cadastro_lineEdit_email.setText('')
                 self.tela_cadastro.cadastro_lineEdit_telefone.setText('')
@@ -451,6 +451,12 @@ class Main(QMainWindow,Ui_Main):
             self.tela_busca_modifica_fornecedor.lineEdit_pessoa.setText(self.cadastro.fornecedor[6])
             QMessageBox.information(None, 'Buscar Fornecedor', 'Fornecedor encontrado com sucesso!')
         else:
+            self.tela_busca_modifica_fornecedor.lineEdit_cnpj.setText('')
+            self.tela_busca_modifica_fornecedor.lineEdit_rasao_social.setText('')
+            self.tela_busca_modifica_fornecedor.lineEdit_nacionalida.setText('')
+            self.tela_busca_modifica_fornecedor.lineEdit_endereco.setText('')
+            self.tela_busca_modifica_fornecedor.lineEdit_telefone.setText('')
+            self.tela_busca_modifica_fornecedor.lineEdit_pessoa.setText('')
             QMessageBox.information(None, 'Buscar Fornecedor', 'Fornecedor nao encontrado!')
             self.tela_busca_modifica_fornecedor.lineEdit_cnpj_buscar.setText('')
 
@@ -465,10 +471,10 @@ class Main(QMainWindow,Ui_Main):
         if(razao_social != '' or CNPJ != '' or nacionalidade != ''or endereco != ''or passoa_contato != ''or telefone != ''):
             if(self.cadastro.atualziar_fornecedor(razao_social,CNPJ,nacionalidade,endereco,telefone,passoa_contato)):
                 #print(self.cadastro.cliete)
-                QMessageBox.information(None, 'Atualizar Cliente', 'Dados do Clietne Atualizados com sucesso!')
+                QMessageBox.information(None, 'Atualizar Fornecedor', 'Dados do Fornecedor Atualizados com sucesso!')
                 self.cadastro.fornecedor_todos = []
             else:
-                QMessageBox.information(None, 'Atualizar Cliente', 'Dados do Clietne nao foram Atualizados!')
+                QMessageBox.information(None, 'Atualizar Fornecedor', 'Dados do Fornecedor nao foram Atualizados!')
                 self.tela_busca_modifica_fornecedor.lineEdit_rasao_social.setText('')
                 self.tela_busca_modifica_fornecedor.lineEdit_cnpj.setText('')
                 self.tela_busca_modifica_fornecedor.lineEdit_nacionalidade.setText('')

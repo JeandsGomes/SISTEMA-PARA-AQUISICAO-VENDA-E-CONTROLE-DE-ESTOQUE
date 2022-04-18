@@ -1,4 +1,6 @@
 #import sqlite3
+# Instale a biblioteca caso o modulo myql não exista: 
+# pip install mysql-connector-python
 import mysql.connector as mysql
 from mysql.connector import Error
 
@@ -19,10 +21,10 @@ class Cadastro:
         #Cria tabela fornecedor
         try:
             #self._conta_cache = Banco()
-            conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+            conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
             cursor = conexao.cursor()
 
-            sql = """CREATE TABLE IF NOT EXISTS `mydb`.`Fornecedor` (
+            sql = """CREATE TABLE IF NOT EXISTS `mydb_2`.`Fornecedor` (
   `idFornecedor` INT NOT NULL AUTO_INCREMENT,
   `razao_social` VARCHAR(100) NOT NULL,
   `CNPJ` VARCHAR(100) NOT NULL,
@@ -30,7 +32,9 @@ class Cadastro:
   `endereco` VARCHAR(100) NOT NULL,
   `telefone` VARCHAR(100) NOT NULL,
   `pessoa_de_contato` VARCHAR(100) NOT NULL,
-  PRIMARY KEY (`idFornecedor`))
+  PRIMARY KEY (`idFornecedor`),
+  UNIQUE INDEX `CNPJ_UNIQUE` (`CNPJ` ASC),
+  UNIQUE INDEX `idFornecedor_UNIQUE` (`idFornecedor` ASC))
 ENGINE = InnoDB;"""
 
             cursor.execute(sql)
@@ -43,26 +47,29 @@ ENGINE = InnoDB;"""
         #Cria tabela produto
         try:
             #self._conta_cache = Banco()
-            conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+            conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
             cursor = conexao.cursor()
 
-            sql = """CREATE TABLE IF NOT EXISTS `mydb`.`Produto` (
-  `idproduto` INT NOT NULL AUTO_INCREMENT,
-  `n_bebida` VARCHAR(45) NOT NULL,
+            sql = """CREATE TABLE IF NOT EXISTS `mydb_2`.`Produto` (
+  `idProduto` INT NOT NULL AUTO_INCREMENT,
   `nome_da_bebida` VARCHAR(100) NOT NULL,
+  `numero_do_lote` INT NOT NULL,
   `data_de_fabricacao` VARCHAR(100) NOT NULL,
   `data_validade` VARCHAR(100) NOT NULL,
+  `local_de_fabricacao` VARCHAR(100) NOT NULL,
   `condicoes_de_armazenamento` VARCHAR(100) NOT NULL,
-  `quantidades` VARCHAR(100) NOT NULL,
+  `quantidade` INT NOT NULL,
   `local_armazenado` VARCHAR(100) NOT NULL,
-  `valor_de_compra_UN` VARCHAR(100) NOT NULL,
-  `valor_revenda_UN` VARCHAR(100) NOT NULL,
+  `valor_de_compra_UN` FLOAT NOT NULL,
+  `valor_revenda_UN` FLOAT NOT NULL,
+  `data_de_entrada_do_lote` VARCHAR(45) NOT NULL,
   `Fornecedor_idFornecedor` INT NOT NULL,
-  PRIMARY KEY (`idproduto`, `Fornecedor_idFornecedor`),
+  PRIMARY KEY (`idProduto`, `Fornecedor_idFornecedor`),
   INDEX `fk_Produto_Fornecedor1_idx` (`Fornecedor_idFornecedor` ASC),
+  UNIQUE INDEX `idProduto_UNIQUE` (`idProduto` ASC),
   CONSTRAINT `fk_Produto_Fornecedor1`
     FOREIGN KEY (`Fornecedor_idFornecedor`)
-    REFERENCES `mydb`.`Fornecedor` (`idFornecedor`)
+    REFERENCES `mydb_2`.`Fornecedor` (`idFornecedor`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;"""
@@ -77,19 +84,22 @@ ENGINE = InnoDB;"""
         #Cria tabela clietne
         try:
             #self._conta_cache = Banco()
-            conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+            conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
             cursor = conexao.cursor()
 
-            sql = """CREATE TABLE IF NOT EXISTS `mydb`.`Cliete` (
-  `idCliete` INT NOT NULL,
+            sql = """CREATE TABLE IF NOT EXISTS `mydb_2`.`Cliente` (
+  `idCliente` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NOT NULL,
   `CPF` VARCHAR(100) NOT NULL,
   `endereco` VARCHAR(100) NOT NULL,
   `data_de_nascimento` VARCHAR(100) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
   `telefone` VARCHAR(100) NOT NULL,
-  PRIMARY KEY (`idCliete`))
-ENGINE = InnoDB;"""
+  PRIMARY KEY (`idCliente`),
+  UNIQUE INDEX `idCliente_UNIQUE` (`idCliente` ASC),
+  UNIQUE INDEX `CPF_UNIQUE` (`CPF` ASC))
+ENGINE = InnoDB
+COMMENT = '	';"""
 
             cursor.execute(sql)
 
@@ -101,19 +111,21 @@ ENGINE = InnoDB;"""
         #Cria tabela funcionario
         try:
             #self._conta_cache = Banco()
-            conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+            conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
             cursor = conexao.cursor()
 
-            sql = """CREATE TABLE IF NOT EXISTS `mydb`.`Funcionari` (
-  `idFuncionari` INT NOT NULL,
+            sql = """CREATE TABLE IF NOT EXISTS `mydb_2`.`Funcionario` (
+  `idFuncionario` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NOT NULL,
   `CPF` VARCHAR(100) NOT NULL,
   `data_de_nascimento` VARCHAR(100) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
   `telefone` VARCHAR(100) NOT NULL,
-  `Cargo` VARCHAR(100) NOT NULL,
-  `senha` VARCHAR(100) NOT NULL,
-  PRIMARY KEY (`idFuncionari`))
+  `cargo` VARCHAR(100) NOT NULL,
+  `senha` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idFuncionario`),
+  UNIQUE INDEX `idFuncionario_UNIQUE` (`idFuncionario` ASC),
+  UNIQUE INDEX `CPF_UNIQUE` (`CPF` ASC))
 ENGINE = InnoDB;"""
 
             cursor.execute(sql)
@@ -126,34 +138,34 @@ ENGINE = InnoDB;"""
         #Cria tabela vendas
         try:
             #self._conta_cache = Banco()
-            conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+            conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
             cursor = conexao.cursor()
 
-            sql = """CREATE TABLE IF NOT EXISTS `mydb`.`Vendas` (
+            sql = """CREATE TABLE IF NOT EXISTS `mydb_2`.`Vendas` (
   `idVendas` INT NOT NULL AUTO_INCREMENT,
   `forma_de_pagamento` VARCHAR(100) NOT NULL,
   `data_da_venda` VARCHAR(100) NOT NULL,
-  `valor_da_compra` VARCHAR(45) NOT NULL,
-  `Produto_idproduto` INT NOT NULL,
-  `Cliete_idCliete` INT NOT NULL,
-  `Funcionari_idFuncionari` INT NOT NULL,
-  PRIMARY KEY (`idVendas`, `Produto_idproduto`, `Cliete_idCliete`, `Funcionari_idFuncionari`),
-  INDEX `fk_Vendas_Produto_idx` (`Produto_idproduto` ASC),
-  INDEX `fk_Vendas_Cliete1_idx` (`Cliete_idCliete` ASC),
-  INDEX `fk_Vendas_Funcionari1_idx` (`Funcionari_idFuncionari` ASC),
-  CONSTRAINT `fk_Vendas_Produto`
-    FOREIGN KEY (`Produto_idproduto`)
-    REFERENCES `mydb`.`Produto` (`idproduto`)
+  `Cliente_idCliente` INT NOT NULL,
+  `Funcionario_idFuncionario` INT NOT NULL,
+  `Produto_idProduto` INT NOT NULL,
+  PRIMARY KEY (`idVendas`, `Cliente_idCliente`, `Funcionario_idFuncionario`, `Produto_idProduto`),
+  INDEX `fk_Vendas_Cliente_idx` (`Cliente_idCliente` ASC),
+  INDEX `fk_Vendas_Funcionario1_idx` (`Funcionario_idFuncionario` ASC),
+  INDEX `fk_Vendas_Produto1_idx` (`Produto_idProduto` ASC),
+  UNIQUE INDEX `idVendas_UNIQUE` (`idVendas` ASC),
+  CONSTRAINT `fk_Vendas_Cliente`
+    FOREIGN KEY (`Cliente_idCliente`)
+    REFERENCES `mydb_2`.`Cliente` (`idCliente`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Vendas_Cliete1`
-    FOREIGN KEY (`Cliete_idCliete`)
-    REFERENCES `mydb`.`Cliete` (`idCliete`)
+  CONSTRAINT `fk_Vendas_Funcionario1`
+    FOREIGN KEY (`Funcionario_idFuncionario`)
+    REFERENCES `mydb_2`.`Funcionario` (`idFuncionario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Vendas_Funcionari1`
-    FOREIGN KEY (`Funcionari_idFuncionari`)
-    REFERENCES `mydb`.`Funcionari` (`idFuncionari`)
+  CONSTRAINT `fk_Vendas_Produto1`
+    FOREIGN KEY (`Produto_idProduto`)
+    REFERENCES `mydb_2`.`Produto` (`idProduto`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;"""
@@ -171,7 +183,7 @@ ENGINE = InnoDB;"""
         try:
             if(True):
 
-                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
 
                 bd_razao_social = str(razao_social)
@@ -205,7 +217,7 @@ ENGINE = InnoDB;"""
         try:
             if(True):
 
-                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
 
                 bd_nome = str(nome)
@@ -225,14 +237,14 @@ ENGINE = InnoDB;"""
                 #        pega= pega+i+'\n'
 
                 #cursor.execute(sql)
-                cursor.execute('INSERT INTO Cliete (nome,CPF,endereco,data_de_nascimento,email,telefone) VALUES (%s,%s,%s,%s,%s,%s)' , (bd_nome,bd_cpf,bd_edereco,bd_data_de_nascimento,bd_email,bd_telefone))
+                cursor.execute('INSERT INTO Cliente (nome,CPF,endereco,data_de_nascimento,email,telefone) VALUES (%s,%s,%s,%s,%s,%s)' , (bd_nome,bd_cpf,bd_edereco,bd_data_de_nascimento,bd_email,bd_telefone))
 
                 conexao.commit()
                 conexao.close()
 
                 return True
         except Error as erro:
-            print("Falha ao inserir dados na tabela cliete: {}".format(erro))
+            print("Falha ao inserir dados na tabela cliente: {}".format(erro))
             return False
 
     def sqlite_create_funcionario(self,nome,CPF,data_de_ascimento,email,telefone,Cargo,senha):
@@ -240,7 +252,7 @@ ENGINE = InnoDB;"""
         try:
             if(True):
 
-                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
 
                 bd_nome = str(nome)
@@ -261,7 +273,7 @@ ENGINE = InnoDB;"""
                 #        pega= pega+i+'\n'
 
                 #cursor.execute(sql)
-                cursor.execute('INSERT INTO Funcionari (nome,CPF,data_de_nascimento,email,telefone,Cargo,senha) VALUES (%s,%s,%s,%s,%s,%s,MD5(%s))' , (bd_nome,bd_CPF,bd_data_de_ascimento,bd_email,bd_telefone,bd_Cargo,bd_senha))
+                cursor.execute('INSERT INTO Funcionario (nome,CPF,data_de_nascimento,email,telefone,Cargo,senha) VALUES (%s,%s,%s,%s,%s,%s,MD5(%s))' , (bd_nome,bd_CPF,bd_data_de_ascimento,bd_email,bd_telefone,bd_Cargo,bd_senha))
 
                 conexao.commit()
                 conexao.close()
@@ -275,7 +287,7 @@ ENGINE = InnoDB;"""
     def sqlite_readSec_fornecedor(self,cpf):
         try:
             if(True):
-                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
                 cursor.execute('SELECT * FROM `fornecedor` WHERE CNPJ= %s'%cpf)
                 usuario = cursor.fetchall()
@@ -306,9 +318,9 @@ ENGINE = InnoDB;"""
     def sqlite_readSec_fornecedor_id(self,cpf):
         try:
             if(True):
-                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
-                cursor.execute('SELECT * FROM `fornecedor` WHERE idFornecedor= %s'%int(cpf))
+                cursor.execute('SELECT * FROM `Fornecedor` WHERE idFornecedor= %s'%int(cpf))
                 usuario = cursor.fetchall()
                 print('usuario')
                 print(usuario)
@@ -339,7 +351,7 @@ ENGINE = InnoDB;"""
     def sqlite_readSec_fornecedor_todos(self):
         try:
             if(True):
-                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
                 cursor.execute('SELECT * FROM `fornecedor`')
                 usuario = cursor.fetchall()
@@ -370,9 +382,9 @@ ENGINE = InnoDB;"""
     def sqlite_readSec_cliente(self,cpf):
         try:
             if(True):
-                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
-                cursor.execute('SELECT * FROM `cliete` WHERE CPF= %s'%cpf)
+                cursor.execute('SELECT * FROM `Cliente` WHERE CPF= %s'%cpf)
                 usuario = cursor.fetchall()
                 
                 if (usuario!=[]):
@@ -395,9 +407,9 @@ ENGINE = InnoDB;"""
     def sqlite_readSec_cliente_todos(self):
         try:
             if(True):
-                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
-                cursor.execute('SELECT * FROM `cliete`')
+                cursor.execute('SELECT * FROM `Cliente`')
                 usuario = cursor.fetchall()
                 
                 if (usuario!=[]):
@@ -421,10 +433,10 @@ ENGINE = InnoDB;"""
     def sqlite_read_funcionario(self,cpf,senha):
         try:
             if(True):
-                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
 
-                cursor.execute("SELECT * FROM `funcionari` WHERE CPF=%s AND senha= MD5('%s')" %(cpf,senha))
+                cursor.execute("SELECT * FROM `funcionario` WHERE CPF=%s AND senha= MD5('%s')" %(cpf,senha))
                 usuario = cursor.fetchall()
                 
                
@@ -449,10 +461,10 @@ ENGINE = InnoDB;"""
     def sqlite_read_funcionario_cpf(self,cpf):
         try:
             if(True):
-                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
 
-                cursor.execute("SELECT * FROM `funcionari` WHERE CPF=%s" %(cpf))
+                cursor.execute("SELECT * FROM `funcionario` WHERE CPF=%s" %(cpf))
                 usuario = cursor.fetchall()
                 
                
@@ -491,10 +503,10 @@ ENGINE = InnoDB;"""
 
             if(fornecedor != False):
 
-                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
 
-                cursor.execute('INSERT INTO Produto (n_bebida,nome_da_bebida,data_de_fabricacao,data_validade,condicoes_de_armazenamento,quantidades,local_armazenado,valor_de_compra_UN,valor_revenda_UN,Fornecedor_idFornecedor) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)' , (bd_n_bebida,bd_nome_da_bebida,bd_data_de_fabricacao,bd_data_de_validade,bd_condicoes_de_armazenamento,bd_quantidades,bd_local_armazenado,bd_valor_de_compra_UN,bd_valor_revenda_UN,fornecedor[0][0]))
+                cursor.execute('INSERT INTO Produto (nome_da_bebida,numero_do_lote,data_de_fabricacao,data_validade,condicoes_de_armazenamento,quantidades,local_armazenado,valor_de_compra_UN,valor_revenda_UN,Fornecedor_idFornecedor) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)' , (bd_n_bebida,bd_nome_da_bebida,bd_data_de_fabricacao,bd_data_de_validade,bd_condicoes_de_armazenamento,bd_quantidades,bd_local_armazenado,bd_valor_de_compra_UN,bd_valor_revenda_UN,fornecedor[0][0]))
 
                 conexao.commit()
                 conexao.close()
@@ -511,7 +523,7 @@ ENGINE = InnoDB;"""
     def sqlite_read_produto_todos(self):
         try:
             if(True):
-                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
 
                 cursor.execute("SELECT * FROM `produto`")
@@ -538,7 +550,7 @@ ENGINE = InnoDB;"""
     def sqlite_read_produto(self,n_bebida):
         try:
             if(True):
-                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
 
                 cursor.execute("SELECT * FROM `produto` WHERE n_bebida= %s" %(n_bebida))
@@ -583,7 +595,7 @@ ENGINE = InnoDB;"""
 
             if(cliente != False and funcioanrio != False and produto != False and int(produto[0][6]) >= 1):
 
-                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
 
                 print(cliente[0][0])
@@ -609,7 +621,7 @@ ENGINE = InnoDB;"""
     def sqlite_read_venda_todas(self):
         try:
             if(True):
-                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
 
                 cursor.execute("SELECT * FROM `vendas`")
@@ -635,7 +647,7 @@ ENGINE = InnoDB;"""
     def sqlite_read_venda_cliente(self,id_cliente):
         try:
             if(True):
-                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
 
                 cursor.execute("SELECT * FROM `vendas` WHERE Cliete_idCliete = %s" %(id_cliente))
@@ -661,7 +673,7 @@ ENGINE = InnoDB;"""
     def sqlite_read_venda_funcionario(self,id_funcionario):
         try:
             if(True):
-                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
 
                 cursor.execute("SELECT * FROM `vendas` WHERE Funcionari_idFuncionari = %s" %(id_funcionario))
@@ -692,7 +704,7 @@ ENGINE = InnoDB;"""
 
             if(True):
 
-                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
                 #print(lista)
                 cursor.execute('UPDATE `produto` SET quantidades="%s" WHERE n_bebida = %s' % (str(nova_quantidade),n_bebida))
@@ -725,7 +737,7 @@ ENGINE = InnoDB;"""
 
             if(fornecedor != []):
 
-                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
                 #print(lista)
                 cursor.execute('UPDATE `produto` SET nome_da_bebida="%s",data_de_fabricacao = "%s",data_validade = "%s", condicoes_de_armazenamento = "%s",quantidades="%s", local_armazenado = "%s",valor_de_compra_UN = "%s",valor_revenda_UN = "%s", Fornecedor_idFornecedor = "%s" WHERE n_bebida = %s' % (bd_nome_da_bebida,bd_data_de_fabricacao,bd_data_de_validade,bd_condicoes_de_armazenamento,bd_quantidades,bd_local_armazenado,bd_valor_de_compra_UN,bd_valor_revenda_UN,fornecedor[0][0],bd_n_bebida))
@@ -756,7 +768,7 @@ ENGINE = InnoDB;"""
 
             if(True):
 
-                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
                 #print(lista)
                 cursor.execute('UPDATE Cliete SET nome = "%s",endereco = "%s",data_de_nascimento = "%s",email = "%s",telefone = "%s" WHERE cpf = %s' % (bd_nome,bd_edereco,bd_data_de_nascimento,bd_email,bd_telefone,bd_cpf))
@@ -784,7 +796,7 @@ ENGINE = InnoDB;"""
 
             if(True):
 
-                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
                 #print(lista)
                 cursor.execute('UPDATE Fornecedor SET razao_social = "%s",nacionalidade = "%s",endereco = "%s",telefone = "%s",pessoa_de_contato = "%s" WHERE CNPJ = %s' % (bd_razao_social,bd_nacionalidade,bd_endereco,bd_telefone,bd_passoa_contato,bd_CNPJ))
@@ -813,10 +825,10 @@ ENGINE = InnoDB;"""
 
             if(True):
 
-                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
                 #print(lista)
-                cursor.execute('UPDATE Cliete SET nome = "%s",endereco = "%s",data_de_nascimento = "%s",email = "%s",telefone = "%s" WHERE cpf = %s' % (bd_nome,bd_edereco,bd_data_de_nascimento,bd_email,bd_telefone,bd_cpf))
+                cursor.execute('UPDATE Cliente SET nome = "%s",endereco = "%s",data_de_nascimento = "%s",email = "%s",telefone = "%s" WHERE cpf = %s' % (bd_nome,bd_edereco,bd_data_de_nascimento,bd_email,bd_telefone,bd_cpf))
                 conexao.commit()
                 conexao.close()
 
@@ -828,17 +840,27 @@ ENGINE = InnoDB;"""
             return False
 
     def sqlite_remove_fornecedor(self,cnpj):
-        try:      
-            if(True):
+        try:
+            print('Verificando se não existe produto com Fornecedor Informado:')
+            conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
+            cursor = conexao.cursor()
+            cursor.execute('SELECT * FROM `Fornecedor` WHERE CNPJ= %s'%int(cnpj))
+            fornecedor = cursor.fetchall()
+            print(fornecedor)  
+            cursor.execute('SELECT * FROM `Produto` WHERE Fornecedor_idFornecedor= %s'%int(fornecedor[0][0]))
+            produto = cursor.fetchall()          
 
-                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
-                cursor = conexao.cursor()
+            if(produto == []):
                 #print(lista)
-                cursor.execute('DELETE FROM `mydb`.`fornecedor` WHERE CNPJ = %s' % (str(cnpj)))
+                cursor.execute('DELETE FROM `mydb_2`.`Fornecedor` WHERE CNPJ = %s' % (str(cnpj)))
                 conexao.commit()
                 conexao.close()
 
                 return True
+
+            else:
+                print('Falha ao remover funcionario: Existe produto cadastrado com esse fornecedor.')
+                return False
 
 
         except Error as erro:
@@ -849,10 +871,10 @@ ENGINE = InnoDB;"""
         try:      
             if(True):
 
-                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
                 #print(lista)
-                cursor.execute('DELETE FROM `mydb`.`cliete` WHERE CPF = %s' % (str(cpf)))
+                cursor.execute('DELETE FROM `mydb_2`.`cliente` WHERE CPF = %s' % (str(cpf)))
                 conexao.commit()
                 conexao.close()
 
@@ -867,7 +889,7 @@ ENGINE = InnoDB;"""
         try:      
             if(True):
 
-                conexao = mysql.connect(host = 'localhost',db='mydb',user='root')
+                conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
                 #print(lista)
                 cursor.execute('DELETE FROM `mydb`.`produto` WHERE n_bebida = %s' %(str(n_bebida)))
