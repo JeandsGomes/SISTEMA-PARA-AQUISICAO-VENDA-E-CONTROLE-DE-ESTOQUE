@@ -143,6 +143,7 @@ ENGINE = InnoDB;"""
   `idVendas` INT NOT NULL AUTO_INCREMENT,
   `forma_de_pagamento` VARCHAR(100) NOT NULL,
   `data_da_venda` VARCHAR(100) NOT NULL,
+  `valor` FLOAT NOT NULL,
   `Cliente_idCliente` INT NOT NULL,
   `Funcionario_idFuncionario` INT NOT NULL,
   `Produto_idProduto` INT NOT NULL,
@@ -598,7 +599,7 @@ ENGINE = InnoDB;"""
 
                 print(cliente[0][0])
                 print(funcioanrio[0][0])
-                cursor.execute('INSERT INTO Vendas (forma_de_pagamento,data_da_venda,Produto_idproduto,Cliete_idCliete,Funcionari_idFuncionari,valor_da_compra) VALUES (%s,%s,%s,%s,%s,%s)' , (bd_forma_de_pagamento,bd_data_da_venda,produto[0][0],cliente[0][0],funcioanrio[0][0],str(valor_da_compra)))
+                cursor.execute('INSERT INTO Vendas (forma_de_pagamento,data_da_venda,valor,Cliente_idCliente,Funcionario_idFuncionario,Produto_idProduto) VALUES (%s,%s,%s,%s,%s,%s)' , (bd_forma_de_pagamento,bd_data_da_venda,produto[0][9],cliente[0][0],funcioanrio[0][0],produto[0][0]))
 
                 conexao.commit()
                 conexao.close()
@@ -705,14 +706,14 @@ ENGINE = InnoDB;"""
                 conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
                 #print(lista)
-                cursor.execute('UPDATE `produto` SET quantidades="%s" WHERE n_bebida = %s' % (str(nova_quantidade),n_bebida))
+                cursor.execute('UPDATE `produto` SET quantidade="%s" WHERE numero_do_lote = %s' % (str(nova_quantidade),n_bebida))
                 conexao.commit()
                 conexao.close()
 
                 return True
 
         except Error as erro:
-            print("Falha ao fazer update da tabela produto: {}".format(erro))
+            print("Falha ao fazer update da quantidade do produto: {}".format(erro))
             return False
 
     def sqlite_update_produto(self,n_bebida,nome_da_bebida,data_de_fabricacao,data_de_validade,condicoes_de_armazenamento,quantidades,local_armazenado,valor_de_compra_UN,valor_revenda_UN,cnpj_fornecedor):
@@ -733,12 +734,12 @@ ENGINE = InnoDB;"""
             print('Fornecedor')
             print(self.produto)
 
-            if(fornecedor != []):
+            if(fornecedor):
 
                 conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
                 #print(lista)
-                cursor.execute('UPDATE `produto` SET nome_da_bebida="%s",data_de_fabricacao = "%s",data_validade = "%s", condicoes_de_armazenamento = "%s",quantidades="%s", local_armazenado = "%s",valor_de_compra_UN = "%s",valor_revenda_UN = "%s", Fornecedor_idFornecedor = "%s" WHERE n_bebida = %s' % (bd_nome_da_bebida,bd_data_de_fabricacao,bd_data_de_validade,bd_condicoes_de_armazenamento,bd_quantidades,bd_local_armazenado,bd_valor_de_compra_UN,bd_valor_revenda_UN,fornecedor[0][0],bd_n_bebida))
+                cursor.execute('UPDATE `produto` SET nome_da_bebida="%s",data_de_fabricacao = "%s",data_validade = "%s", condicoes_de_armazenamento = "%s",quantidade="%s", local_armazenado = "%s",valor_de_compra_UN = "%s",valor_revenda_UN = "%s", Fornecedor_idFornecedor = "%s" WHERE numero_do_lote = %s' % (bd_nome_da_bebida,bd_data_de_fabricacao,bd_data_de_validade,bd_condicoes_de_armazenamento,bd_quantidades,bd_local_armazenado,bd_valor_de_compra_UN,bd_valor_revenda_UN,fornecedor[0][0],bd_n_bebida))
                 conexao.commit()
                 conexao.close()
 
@@ -890,7 +891,7 @@ ENGINE = InnoDB;"""
                 conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
                 #print(lista)
-                cursor.execute('DELETE FROM `mydb`.`produto` WHERE numero_do_lote = %s' %(str(n_bebida)))
+                cursor.execute('DELETE FROM `mydb_2`.`produto` WHERE numero_do_lote = %s' %(str(n_bebida)))
                 conexao.commit()
                 conexao.close()
 

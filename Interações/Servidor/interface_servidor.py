@@ -278,7 +278,6 @@ class ClientThread(threading.Thread):
                 for i in range(int(codigo[1]),int(codigo[1])+5):
                     if(i < len(flag)):
                         saida = saida+'/-/'+flag[i][1]+'/'+flag[i][2]+'/'+str(flag[i][3])+'/'+str(flag[i][4])+'/'+str(flag[i][5])+'/'+str(flag[i][6])
-                
 
         self.con.send(saida.encode())
         print('-solicitacao recebida...')

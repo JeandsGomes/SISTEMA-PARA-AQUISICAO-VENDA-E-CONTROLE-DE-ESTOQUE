@@ -236,9 +236,10 @@ class Main(QMainWindow,Ui_Main):
 
     def botaoMostrarMaisVendas(self):
         self.cadastro.buscar_vendas_todas()
-        historico = 'forma_de_pagamento/data/valor/n_bebida/cliente/funcionario\n'
+        historico = 'forma_de_pagamento/data/valor/ID_Cliente/ID_Funcionario/ID_Produto\n'
         print(self.cadastro.vendas_todas)
         for i in self.cadastro.vendas_todas:
+            print(i)
             historico = historico+i[0]+'/'+i[1]+'/'+i[2]+'/'+i[3]+'/'+i[4]+'/'+i[5]+'\n'
         #textEdit_tabela_vendas
         self.tela_menu_inicial.textEdit_tabela_vendas.setText(historico)
@@ -518,9 +519,9 @@ class Main(QMainWindow,Ui_Main):
         #razao_social,CNPJ,nacionalidade,endereco,telefone,passoa_contato
         self.cadastro.buscar_produto_todos()
         print(self.cadastro.prdotos_todas)
-        historico = 'n_bebida/nome/fabricacao/validade/armazenamento/quantidades/local\n'
+        historico = 'n_bebida/nome/fabricacao/validade/armazenamento/quantidades/local/valor\n'
         for i in self.cadastro.prdotos_todas:
-            historico = historico+i[0]+'/'+i[1]+'/'+i[2]+'/'+i[3]+'/'+i[4]+'/'+i[5]+'\n'
+            historico = historico+i[0]+'/'+i[1]+'/'+i[2]+'/'+i[3]+'/'+i[4]+'/'+i[5]+'/'+i[7]+'\n'
         #textEdit_tabela_vendas
         self.tela_cadastra_produto.textEdit_tabela_produto.setText(historico)
 
