@@ -213,7 +213,7 @@ class ClientThread(threading.Thread):
             if(flag == False):
                 saida = '0/'
             else:
-                saida = '1/'+flag[0][1]+'/'+flag[0][2]+'/'+flag[0][3]+'/'+flag[0][4]+'/'+flag[0][5]+'/'+flag[0][6]+'/'+flag[0][7]+'/'+flag[0][8]+'/'+flag[0][9]+'/'+str(flag[0][10])
+                saida = '1/'+flag[0][1]+'/'+str(flag[0][2])+'/'+flag[0][3]+'/'+flag[0][4]+'/'+flag[0][5]+'/'+str(flag[0][6])+'/'+flag[0][7]+'/'+str(flag[0][8])+'/'+str(flag[0][9])+'/'+str(flag[0][10])
 
         #Busca Todos os Produtos
         #opc,qtd
@@ -228,7 +228,7 @@ class ClientThread(threading.Thread):
 
                 for i in range(int(codigo[1]),int(codigo[1])+5):
                     if(i < len(flag)):
-                        saida = saida+'/-/'+flag[i][1]+'/'+flag[i][2]+'/'+flag[i][3]+'/'+flag[i][4]+'/'+flag[i][5]+'/'+flag[i][6]+'/'+flag[i][7]
+                        saida = saida+'/-/'+flag[i][1]+'/'+str(flag[i][2])+'/'+flag[i][3]+'/'+flag[i][4]+'/'+flag[i][5]+'/'+str(flag[i][6])+'/'+flag[i][7]+'/'+str(flag[i][9])
 
         #Atualziar Produto
         #opc,n_bebida,nome_da_bebida,data_de_fabricacao,data_de_validade,condicoes_de_armazenamento,quantidades,local_armazenado,valor_de_compra_UN,valor_revenda_UN,cnpj_fornecedor

@@ -56,13 +56,11 @@ ENGINE = InnoDB;"""
   `numero_do_lote` INT NOT NULL,
   `data_de_fabricacao` VARCHAR(100) NOT NULL,
   `data_validade` VARCHAR(100) NOT NULL,
-  `local_de_fabricacao` VARCHAR(100) NOT NULL,
   `condicoes_de_armazenamento` VARCHAR(100) NOT NULL,
   `quantidade` INT NOT NULL,
   `local_armazenado` VARCHAR(100) NOT NULL,
   `valor_de_compra_UN` FLOAT NOT NULL,
   `valor_revenda_UN` FLOAT NOT NULL,
-  `data_de_entrada_do_lote` VARCHAR(45) NOT NULL,
   `Fornecedor_idFornecedor` INT NOT NULL,
   PRIMARY KEY (`idProduto`, `Fornecedor_idFornecedor`),
   INDEX `fk_Produto_Fornecedor1_idx` (`Fornecedor_idFornecedor` ASC),
@@ -506,7 +504,7 @@ ENGINE = InnoDB;"""
                 conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
 
-                cursor.execute('INSERT INTO Produto (nome_da_bebida,numero_do_lote,data_de_fabricacao,data_validade,condicoes_de_armazenamento,quantidades,local_armazenado,valor_de_compra_UN,valor_revenda_UN,Fornecedor_idFornecedor) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)' , (bd_n_bebida,bd_nome_da_bebida,bd_data_de_fabricacao,bd_data_de_validade,bd_condicoes_de_armazenamento,bd_quantidades,bd_local_armazenado,bd_valor_de_compra_UN,bd_valor_revenda_UN,fornecedor[0][0]))
+                cursor.execute('INSERT INTO Produto (nome_da_bebida,numero_do_lote,data_de_fabricacao,data_validade,condicoes_de_armazenamento,quantidade,local_armazenado,valor_de_compra_UN,valor_revenda_UN,Fornecedor_idFornecedor) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)' , (bd_n_bebida,bd_nome_da_bebida,bd_data_de_fabricacao,bd_data_de_validade,bd_condicoes_de_armazenamento,bd_quantidades,bd_local_armazenado,bd_valor_de_compra_UN,bd_valor_revenda_UN,fornecedor[0][0]))
 
                 conexao.commit()
                 conexao.close()
@@ -553,7 +551,7 @@ ENGINE = InnoDB;"""
                 conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
 
-                cursor.execute("SELECT * FROM `produto` WHERE n_bebida= %s" %(n_bebida))
+                cursor.execute("SELECT * FROM `produto` WHERE numero_do_lote= %s" %(n_bebida))
                 usuario = cursor.fetchall()
                 
                 if (usuario!=[]):
@@ -892,7 +890,7 @@ ENGINE = InnoDB;"""
                 conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
                 #print(lista)
-                cursor.execute('DELETE FROM `mydb`.`produto` WHERE n_bebida = %s' %(str(n_bebida)))
+                cursor.execute('DELETE FROM `mydb`.`produto` WHERE numero_do_lote = %s' %(str(n_bebida)))
                 conexao.commit()
                 conexao.close()
 
