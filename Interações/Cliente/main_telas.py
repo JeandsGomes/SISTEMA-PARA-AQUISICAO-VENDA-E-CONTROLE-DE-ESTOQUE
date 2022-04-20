@@ -5,12 +5,14 @@
 import sys
 import os
 
+from PyQt5.QtCore import QDate
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QMessageBox
 from PyQt5.QtCore import QCoreApplication
 
 from menu_inicial import Menu_Inicial
-from tela_cadastro import Tela_Cadastro
+from tela_cadastro1_1 import Tela_Cadastro
 from tela_fornecedor_cadastra import Tela_Fornecedor_Cadastra
 from tela_fornecedor_busca_modifica import Tela_Fornecedor_Busca_Modifica
 from tela_cliente_cadastra import Tela_Cliente_Cadastra
@@ -191,10 +193,14 @@ class Main(QMainWindow,Ui_Main):
         #nome,CPF,data_de_ascimento,email,telefone,Cargo,senha
         nome = self.tela_cadastro.cadastro_lineEdit_nome_completo.text()
         CPF = self.tela_cadastro.cadastro_lineEdit_cpf.text()
+        print('Telefone:',type(self.tela_cadastro.cadastro_lineEdit_cpf))
         data_de_ascimento = self.tela_cadastro.cadastro_lineEdit_data_nascimento.text()
+        data_split = data_de_ascimento.split('/')
+        data_de_ascimento = data_split[0]+'-'+data_split[1]+'-'+data_split[2]
         email = self.tela_cadastro.cadastro_lineEdit_email.text()
         telefone = self.tela_cadastro.cadastro_lineEdit_telefone.text()
-        Cargo = self.tela_cadastro.cadastro_lineEdit_telefone_2.text()
+        self.tela_cadastro.cadastro_lineEdit_telefone_2
+        Cargo = self.tela_cadastro.cadastro_lineEdit_telefone_2.currentText()
         senha = self.tela_cadastro.cadastro_lineEdit_senha.text()
         if(nome !='' or CPF !='' or data_de_ascimento !='' or email !='' or telefone !='' or Cargo !='' or senha !=''):
             if(self.cadastro.cadastro_funcionario(nome,CPF,data_de_ascimento,email,telefone,Cargo,senha)):
@@ -202,20 +208,22 @@ class Main(QMainWindow,Ui_Main):
                 #self.tela_cadastro.lineEdit_cadastro_nome.setText('')
                 self.tela_cadastro.cadastro_lineEdit_nome_completo.setText('')
                 self.tela_cadastro.cadastro_lineEdit_cpf.setText('')
-                self.tela_cadastro.cadastro_lineEdit_data_nascimento.setText('')
+                date = QDate(2000, 1, 1)
+                self.tela_cadastro.cadastro_lineEdit_data_nascimento.setDate(date)
                 self.tela_cadastro.cadastro_lineEdit_email.setText('')
                 self.tela_cadastro.cadastro_lineEdit_telefone.setText('')
-                self.tela_cadastro.cadastro_lineEdit_telefone_2.setText('')
+                #self.tela_cadastro.cadastro_lineEdit_telefone_2.setText('')
                 self.tela_cadastro.cadastro_lineEdit_senha.setText('')
 
             else:
                 QMessageBox.information(None, 'Cadastro Funcioanrio', 'Nao foi possivel realizar o cadastro!')
                 self.tela_cadastro.cadastro_lineEdit_nome_completo.setText('')
                 self.tela_cadastro.cadastro_lineEdit_cpf.setText('')
-                self.tela_cadastro.cadastro_lineEdit_data_nascimento.setText('')
+                date = QDate(2000, 1, 1)
+                self.tela_cadastro.cadastro_lineEdit_data_nascimento.setDate(date)
                 self.tela_cadastro.cadastro_lineEdit_email.setText('')
                 self.tela_cadastro.cadastro_lineEdit_telefone.setText('')
-                self.tela_cadastro.cadastro_lineEdit_telefone_2.setText('')
+                #self.tela_cadastro.cadastro_lineEdit_telefone_2.setText('')
                 self.tela_cadastro.cadastro_lineEdit_senha.setText('')
         else:
             QMessageBox.information(None, 'Cadastro Funcioanrio', 'Todos os campos devem ser preenchidos!')

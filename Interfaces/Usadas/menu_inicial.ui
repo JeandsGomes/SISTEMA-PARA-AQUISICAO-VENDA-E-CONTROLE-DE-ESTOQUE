@@ -726,7 +726,7 @@ QPushButton:pressed{
          <x>100</x>
          <y>240</y>
          <width>250</width>
-         <height>234</height>
+         <height>230</height>
         </rect>
        </property>
        <property name="frameShape">
@@ -801,32 +801,46 @@ border-radius: 5px;</string>
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="lineEdit_index_forma_pagamento">
-             <item>
-              <property name="text">
-               <string>New Item</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Debito</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Crédito</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>PIX</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Em_Especie</string>
-              </property>
-             </item>
+            <widget class="QFrame" name="frame_9">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <item>
+               <widget class="QLabel" name="label_6">
+                <property name="text">
+                 <string>Pagamento:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="lineEdit_index_forma_pagamento">
+                <item>
+                 <property name="text">
+                  <string>Debito</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Crédito</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>PIX</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Em_Especie</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
           </layout>
