@@ -1,3 +1,6 @@
+# Transformar .ui em .py:
+# pyuic <nome_do_arquivo.ui> -o <nome_do_arquivo.py>
+
 #from Banco import Cliente
 import sys
 import os

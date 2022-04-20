@@ -705,22 +705,6 @@ QPushButton:pressed{
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QTextEdit" name="textEdit_tabela_fornecedores">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>40</y>
-         <width>401</width>
-         <height>161</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border-radius: 5px;
-padding 15px;
-background-color: rgb(221,221,221);
-color: rgb(0, 0, 0);</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="label">
        <property name="geometry">
         <rect>
@@ -1037,6 +1021,51 @@ QPushButton:pressed{
        <property name="text">
         <string>Mostrar mais ...</string>
        </property>
+      </widget>
+      <widget class="QTableWidget" name="textEdit_tabela_fornecedores">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>421</width>
+         <height>161</height>
+        </rect>
+       </property>
+       <column>
+        <property name="text">
+         <string>razao_social</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>New Column</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>CNPJ</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>nacionalidade</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>endereco</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>telefone</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>passoa_contato</string>
+        </property>
+       </column>
       </widget>
      </widget>
     </item>

@@ -702,22 +702,6 @@ QPushButton:pressed{
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QTextEdit" name="textEdit_tabela_cliente">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>40</y>
-         <width>401</width>
-         <height>161</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border-radius: 5px;
-padding 15px;
-background-color: rgb(221,221,221);
-color: rgb(0, 0, 0);</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="label">
        <property name="geometry">
         <rect>
@@ -873,24 +857,7 @@ border-radius: 5px;</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_4">
           <item>
-           <widget class="QLineEdit" name="lineEdit_data_nascimento">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">border-width: 1px;
-border-color: black;
-border-style: solid;
-display: inline-block;
-border-radius: 5px;</string>
-            </property>
-            <property name="placeholderText">
-             <string>Data Nascimento</string>
-            </property>
-           </widget>
+           <widget class="QDateEdit" name="lineEdit_data_nascimento"/>
           </item>
           <item>
            <widget class="QLineEdit" name="lineEdit_email">
@@ -1044,6 +1011,46 @@ QPushButton:pressed{
        <property name="text">
         <string>Mostrar mais ...</string>
        </property>
+      </widget>
+      <widget class="QTableWidget" name="tableWidget_tabela_vendas">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>421</width>
+         <height>161</height>
+        </rect>
+       </property>
+       <column>
+        <property name="text">
+         <string>nome</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>cpf</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>edereco</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>data_nascimento</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>email</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>telefone</string>
+        </property>
+       </column>
       </widget>
      </widget>
     </item>

@@ -873,11 +873,20 @@ ENGINE = InnoDB;"""
                 conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
                 #print(lista)
-                cursor.execute('DELETE FROM `mydb_2`.`cliente` WHERE CPF = %s' % (str(cpf)))
-                conexao.commit()
-                conexao.close()
-
-                return True
+                print('cpf:',cpf)
+                cliente = self.sqlite_readSec_cliente(cpf)
+                print('cliente[0][0]:',cliente[0][0])
+                cursor.execute('SELECT * FROM `Vendas` WHERE Cliente_idCliente= %s'%cliente[0][0])
+                venda = cursor.fetchall()
+                print('Venda:',venda)
+                if venda:
+                    print("Falha ao remover cliente: Registro de venda feita por esse cliente.")
+                    return False
+                else:
+                    cursor.execute('DELETE FROM `mydb_2`.`cliente` WHERE CPF = %s' % (str(cpf)))
+                    conexao.commit()
+                    conexao.close()
+                    return True
 
 
         except Error as erro:
