@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QMessageBox
 from PyQt5.QtCore import QCoreApplication
 
-from menu_inicial import Menu_Inicial
+from menu_inicial_1_1 import Menu_Inicial
 from tela_cadastro1_1 import Tela_Cadastro
 from tela_fornecedor_cadastra import Tela_Fornecedor_Cadastra
 from tela_fornecedor_busca_modifica import Tela_Fornecedor_Busca_Modifica
@@ -91,6 +91,7 @@ class Main(QMainWindow,Ui_Main):
 
         #Objeto Usuario
         self.cadastro = plataforma_funcionario()
+        self.row_vendas = 0
         #
 
         #Botões
@@ -247,13 +248,25 @@ class Main(QMainWindow,Ui_Main):
 
     def botaoMostrarMaisVendas(self):
         self.cadastro.buscar_vendas_todas()
-        historico = 'forma_de_pagamento/data/valor/ID_Cliente/ID_Funcionario/ID_Produto\n'
-        print(self.cadastro.vendas_todas)
-        for i in self.cadastro.vendas_todas:
-            print(i)
-            historico = historico+i[0]+'/'+i[1]+'/'+i[2]+'/'+i[3]+'/'+i[4]+'/'+i[5]+'\n'
+        #historico = 'forma_de_pagamento/data/valor/ID_Cliente/ID_Funcionario/ID_Produto\n'
+        #print(self.cadastro.vendas_todas)
+        last_row = self.row_vendas
+        self.row_vendas = (len(self.cadastro.vendas_todas) - self.row_vendas) + self.row_vendas
+        print('self.row_vendas:',self.row_vendas)
+        self.tela_menu_inicial.tableWidget_tabela_vendas.setRowCount(self.row_vendas)
+        for index in range(last_row,self.row_vendas):
+            #print(i)
+            print('self.cadastro.vendas_todas[index]:',self.cadastro.vendas_todas[index])
+            self.tela_menu_inicial.tableWidget_tabela_vendas.setItem(index, 0, QtWidgets.QTableWidgetItem(str(self.cadastro.vendas_todas[index][0])))
+            self.tela_menu_inicial.tableWidget_tabela_vendas.setItem(index, 1, QtWidgets.QTableWidgetItem(str(self.cadastro.vendas_todas[index][1])))
+            self.tela_menu_inicial.tableWidget_tabela_vendas.setItem(index, 2, QtWidgets.QTableWidgetItem(str(self.cadastro.vendas_todas[index][2])))
+            self.tela_menu_inicial.tableWidget_tabela_vendas.setItem(index, 3, QtWidgets.QTableWidgetItem(str(self.cadastro.vendas_todas[index][3])))
+            self.tela_menu_inicial.tableWidget_tabela_vendas.setItem(index, 4, QtWidgets.QTableWidgetItem(str(self.cadastro.vendas_todas[index][4])))
+            self.tela_menu_inicial.tableWidget_tabela_vendas.setItem(index, 5, QtWidgets.QTableWidgetItem(str(self.cadastro.vendas_todas[index][5])))
+            
+            #historico = historico+i[0]+'/'+i[1]+'/'+i[2]+'/'+i[3]+'/'+i[4]+'/'+i[5]+'\n'
         #textEdit_tabela_vendas
-        self.tela_menu_inicial.textEdit_tabela_vendas.setText(historico)
+        #self.tela_menu_inicial.textEdit_tabela_vendas.setText(historico)
 
         
 
