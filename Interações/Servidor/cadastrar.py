@@ -583,16 +583,17 @@ ENGINE = InnoDB;"""
             bd_forma_de_pagamento = str(forma_de_pagamento)
             bd_data_da_venda = str(data_da_venda)
             produto = self.sqlite_read_produto(n_bebida)
-            print(produto)
+            print('PRODUTO:',produto)
             cliente = self.sqlite_readSec_cliente(cpf_cliente)
             print(cliente)
             funcioanrio = self.sqlite_read_funcionario(cpf_funcionario,senha_funcionario)
             print(funcioanrio)
-            valor_da_compra = float(produto[0][9])
-            print(valor_da_compra)
             
 
             if(cliente != False and funcioanrio != False and produto != False and int(produto[0][6]) >= 1):
+
+                valor_da_compra = float(produto[0][9])
+                print(valor_da_compra)
 
                 conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()

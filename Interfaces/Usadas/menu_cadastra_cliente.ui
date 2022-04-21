@@ -843,10 +843,10 @@ border-radius: 5px;</string>
         <widget class="QFrame" name="frame_10">
          <property name="geometry">
           <rect>
-           <x>211</x>
-           <y>10</y>
-           <width>181</width>
-           <height>122</height>
+           <x>210</x>
+           <y>0</y>
+           <width>172</width>
+           <height>130</height>
           </rect>
          </property>
          <property name="frameShape">
@@ -857,7 +857,38 @@ border-radius: 5px;</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_4">
           <item>
-           <widget class="QDateEdit" name="lineEdit_data_nascimento"/>
+           <widget class="QFrame" name="frame_12">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="label_6">
+               <property name="text">
+                <string>Data Na.:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDateEdit" name="lineEdit_data_nascimento"/>
+             </item>
+            </layout>
+           </widget>
           </item>
           <item>
            <widget class="QLineEdit" name="lineEdit_email">

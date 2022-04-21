@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6c5c7749-ed78-4554-b137-7eb3755d1c83" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../diagrama_de_classes/diagrama_de_classes_aps.mwb" beforeDir="false" afterPath="$PROJECT_DIR$/../../diagrama_de_classes/diagrama_de_classes_aps.mwb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../diagrama_de_classes/diagrama_de_classes_aps.mwb.bak" beforeDir="false" afterPath="$PROJECT_DIR$/../../diagrama_de_classes/diagrama_de_classes_aps.mwb.bak" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="286mFzCz2nz3gRdil42K86BMr7O" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6c5c7749-ed78-4554-b137-7eb3755d1c83" name="Default Changelist" comment="" />
+      <created>1650545337245</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1650545337245</updated>
+    </task>
+    <servers />
+  </component>
+</project>

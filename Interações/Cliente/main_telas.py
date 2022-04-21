@@ -251,7 +251,7 @@ class Main(QMainWindow,Ui_Main):
         #historico = 'forma_de_pagamento/data/valor/ID_Cliente/ID_Funcionario/ID_Produto\n'
         #print(self.cadastro.vendas_todas)
         last_row = self.row_vendas
-        self.row_vendas = (len(self.cadastro.vendas_todas) - self.row_vendas) + self.row_vendas
+        self.row_vendas = len(self.cadastro.vendas_todas)
         print('self.row_vendas:',self.row_vendas)
         self.tela_menu_inicial.tableWidget_tabela_vendas.setRowCount(self.row_vendas)
         for index in range(last_row,self.row_vendas):
@@ -275,30 +275,31 @@ class Main(QMainWindow,Ui_Main):
         qnt_vendas = self.tela_menu_inicial.lineEdit_quabtidade.text()
 
         print(self.cadastro.funcionario)
-        forma_de_pagamento = self.tela_menu_inicial.lineEdit_index_forma_pagamento.text()
+        forma_de_pagamento = self.tela_menu_inicial.lineEdit_index_forma_pagamento.currentText()
         data_da_venda= '18-11-2021'
         n_bebida= self.tela_menu_inicial.lineEdit_index_bebida.text()
         cpf_cliente= self.tela_menu_inicial.lineEdit_index_cliente.text()
         cpf_funcionario= self.cadastro.funcionario[1]
         senha_funcionario= self.cadastro.funcionario[3]
 
-        if(qnt_vendas != ''):
+        if(int(qnt_vendas) > 0):
             for i in range(0,int(qnt_vendas)):
                 if(forma_de_pagamento !='' or n_bebida !='' or cpf_cliente !=''):
                     if(self.cadastro.cadastrar_venda(forma_de_pagamento,data_da_venda,n_bebida,cpf_cliente,cpf_funcionario,senha_funcionario)):
                         QMessageBox.information(None, 'Realizar venda', 'Venda Realizada!')
                         #self.tela_cadastro.lineEdit_cadastro_nome.setText('')
 
-                        self.tela_menu_inicial.lineEdit_quabtidade.setText('')
-                        self.tela_menu_inicial.lineEdit_index_forma_pagamento.setText('')
+                        #self.tela_menu_inicial.lineEdit_quabtidade.setText(0)
+                        #self.tela_menu_inicial.lineEdit_index_forma_pagamento.setText('')
                         self.tela_menu_inicial.lineEdit_index_bebida.setText('')
                         self.tela_menu_inicial.lineEdit_index_cliente.setText('')
+                        self.cadastro.prdotos_todas = []
                         self.botaoMostrarMaisVendas()
 
                     else:
                         QMessageBox.information(None, 'Realizar venda', 'Nao foi possivel realizar a venda!')
-                        self.tela_menu_inicial.lineEdit_quabtidade.setText('')
-                        self.tela_menu_inicial.lineEdit_index_forma_pagamento.setText('')
+                        #self.tela_menu_inicial.lineEdit_quabtidade.setText('')
+                        #self.tela_menu_inicial.lineEdit_index_forma_pagamento.setText('')
                         self.tela_menu_inicial.lineEdit_index_bebida.setText('')
                         self.tela_menu_inicial.lineEdit_index_cliente.setText('')
                 else:
