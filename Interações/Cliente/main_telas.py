@@ -13,13 +13,13 @@ from PyQt5.QtCore import QCoreApplication
 
 from menu_inicial_1_1 import Menu_Inicial
 from tela_cadastro1_1 import Tela_Cadastro
-from tela_fornecedor_cadastra import Tela_Fornecedor_Cadastra
+from tela_fornecedor_cadastra_1_1 import Tela_Fornecedor_Cadastra
 from tela_fornecedor_busca_modifica import Tela_Fornecedor_Busca_Modifica
-from tela_cliente_cadastra import Tela_Cliente_Cadastra
-from tela_cliente_busca_modifica import Tela_Cliente_Busca_Modifica
+from tela_cliente_cadastra_1_1 import Tela_Cliente_Cadastra
+from tela_cliente_busca_modifica_1_1 import Tela_Cliente_Busca_Modifica
 from tela_login import Tela_Login
-from tela_produto_cadastra import Tela_Produto_Cadastra
-from tela_produto_busca_modifica import Tela_Produto_Busca_Modifica
+from tela_produto_cadastra_1_1 import Tela_Produto_Cadastra
+from tela_produto_busca_modifica_1_1 import Tela_Produto_Busca_Modifica
 
 from usuario import plataforma_funcionario
 
@@ -92,6 +92,7 @@ class Main(QMainWindow,Ui_Main):
         #Objeto Usuario
         self.cadastro = plataforma_funcionario()
         self.row_vendas = 0
+        self.row_cliente = 0
         #
 
         #Botões
@@ -295,6 +296,7 @@ class Main(QMainWindow,Ui_Main):
                         self.tela_menu_inicial.lineEdit_index_cliente.setText('')
                         self.cadastro.prdotos_todas = []
                         self.botaoMostrarMaisVendas()
+                        self.row_vendas = 0
 
                     else:
                         QMessageBox.information(None, 'Realizar venda', 'Nao foi possivel realizar a venda!')
@@ -310,11 +312,19 @@ class Main(QMainWindow,Ui_Main):
     def botaoMostrarMaisCliente(self):
         self.cadastro.buscar_todos_clientes()
         #print(self.cadastro.cliente_todos)
-        historico = 'nome/cpf/edereco/data_de_nascimento/email/telefone\n'
-        for i in self.cadastro.cliente_todos:
-            historico = historico+i[0]+'/'+i[1]+'/'+i[2]+'/'+i[3]+'/'+i[4]+'/'+i[5]+'\n'
-        #textEdit_tabela_vendas
-        self.tela_cadastra_cliente.textEdit_tabela_cliente.setText(historico)
+        last_row = self.row_cliente
+        self.row_cliente = len(self.cadastro.cliente_todos)
+        print('self.row_cliente:',self.row_cliente)
+        self.tela_cadastra_cliente.tableWidget_tabela_vendas.setRowCount(self.row_cliente)
+        for index in range(last_row,self.row_cliente):
+            #print(i)
+            print('self.cadastro.vendas_todas[index]:',self.cadastro.cliente_todos[index])
+            self.tela_cadastra_cliente.tableWidget_tabela_vendas.setItem(index, 0, QtWidgets.QTableWidgetItem(str(self.cadastro.cliente_todos[index][0])))
+            self.tela_cadastra_cliente.tableWidget_tabela_vendas.setItem(index, 1, QtWidgets.QTableWidgetItem(str(self.cadastro.cliente_todos[index][1])))
+            self.tela_cadastra_cliente.tableWidget_tabela_vendas.setItem(index, 2, QtWidgets.QTableWidgetItem(str(self.cadastro.cliente_todos[index][2])))
+            self.tela_cadastra_cliente.tableWidget_tabela_vendas.setItem(index, 3, QtWidgets.QTableWidgetItem(str(self.cadastro.cliente_todos[index][3])))
+            self.tela_cadastra_cliente.tableWidget_tabela_vendas.setItem(index, 4, QtWidgets.QTableWidgetItem(str(self.cadastro.cliente_todos[index][4])))
+            self.tela_cadastra_cliente.tableWidget_tabela_vendas.setItem(index, 5, QtWidgets.QTableWidgetItem(str(self.cadastro.cliente_todos[index][5])))
 
     def botaoCadastrarCliente(self):
         #nome,cpf,edereco,data_de_nascimento,email,telefone
@@ -323,6 +333,8 @@ class Main(QMainWindow,Ui_Main):
         cpf = self.tela_cadastra_cliente.lineEdit_cpf.text()
         edereco = self.tela_cadastra_cliente.lineEdit_endereco.text()
         data_de_nascimento = self.tela_cadastra_cliente.lineEdit_data_nascimento.text()
+        data_split = data_de_nascimento.split('/')
+        data_de_nascimento = data_split[0]+'-'+data_split[1]+'-'+data_split[2]
         email = self.tela_cadastra_cliente.lineEdit_email.text()
         telefone = self.tela_cadastra_cliente.lineEdit_n_telefone.text()
 
@@ -334,7 +346,7 @@ class Main(QMainWindow,Ui_Main):
                 self.tela_cadastra_cliente.lineEdit_nome_completo.setText('')
                 self.tela_cadastra_cliente.lineEdit_cpf.setText('')
                 self.tela_cadastra_cliente.lineEdit_endereco.setText('')
-                self.tela_cadastra_cliente.lineEdit_data_nascimento.setText('')
+                self.tela_cadastra_cliente.lineEdit_data_nascimento.setDate(QDate(2000, 1, 1))
                 self.tela_cadastra_cliente.lineEdit_email.setText('')
                 self.tela_cadastra_cliente.lineEdit_n_telefone.setText('')
                 self.botaoMostrarMaisCliente()
@@ -344,7 +356,7 @@ class Main(QMainWindow,Ui_Main):
                 self.tela_cadastra_cliente.lineEdit_nome_completo.setText('')
                 self.tela_cadastra_cliente.lineEdit_cpf.setText('')
                 self.tela_cadastra_cliente.lineEdit_endereco.setText('')
-                self.tela_cadastra_cliente.lineEdit_data_nascimento.setText('')
+                self.tela_cadastra_cliente.lineEdit_data_nascimento.setDate(QDate(2000, 1, 1))
                 self.tela_cadastra_cliente.lineEdit_email.setText('')
                 self.tela_cadastra_cliente.lineEdit_n_telefone.setText('')
         else:
@@ -358,7 +370,9 @@ class Main(QMainWindow,Ui_Main):
             self.tela_busca_modifica_cliente.lineEdit_cpf.setText(self.cadastro.cliete[2])
             self.tela_busca_modifica_cliente.lineEdit_nome.setText(self.cadastro.cliete[1])
             self.tela_busca_modifica_cliente.lineEdit_endereco.setText(self.cadastro.cliete[3])
-            self.tela_busca_modifica_cliente.lineEdit_nascimento.setText(self.cadastro.cliete[4])
+            data_split = self.cadastro.cliete[4].split('-')
+            print('data_split:',data_split)
+            self.tela_busca_modifica_cliente.lineEdit_nascimento.setDate(QDate(int(data_split[2]), int(data_split[1]), int(data_split[0])))
             self.tela_busca_modifica_cliente.lineEdit_email.setText(self.cadastro.cliete[5])
             self.tela_busca_modifica_cliente.lineEdit_telefone.setText(self.cadastro.cliete[6])
             QMessageBox.information(None, 'Buscar Cliente', 'Clietne encontrado com sucesso!')
@@ -366,25 +380,33 @@ class Main(QMainWindow,Ui_Main):
             QMessageBox.information(None, 'Buscar Cliente', 'Cliente nao encontrado!')
             self.tela_busca_modifica_cliente.lineEdit_busca_cpf.setText('')
 
+    def rezetar_tabela_cliente(self):
+        self.cadastro.cliente_todos = []
+        self.row_cliente = 0
+        self.botaoMostrarMaisCliente()
+
     def botaoAtualizaClieten(self):
         #atualiza_cliente(self,nome,cpf,edereco,data_de_nascimento,email,telefone)
         nome = self.tela_busca_modifica_cliente.lineEdit_nome.text()
         cpf = self.tela_busca_modifica_cliente.lineEdit_cpf.text()
         edereco = self.tela_busca_modifica_cliente.lineEdit_endereco.text()
         data_de_nascimento = self.tela_busca_modifica_cliente.lineEdit_nascimento.text()
+        data_split = data_de_nascimento.split('/')
+        data_de_nascimento = data_split[0]+'-'+data_split[1]+'-'+data_split[2]
         email = self.tela_busca_modifica_cliente.lineEdit_email.text()
         telefone = self.tela_busca_modifica_cliente.lineEdit_telefone.text()
         if(nome != '' or cpf != '' or edereco != ''or data_de_nascimento != ''or email != ''or telefone != ''):
             if(self.cadastro.atualiza_cliente(nome,cpf,edereco,data_de_nascimento,email,telefone)):
                 #print(self.cadastro.cliete)
                 QMessageBox.information(None, 'Atualizar Cliente', 'Dados do Clietne Atualizados com sucesso!')
-                self.cadastro.cliente_todos = []
+                self.rezetar_tabela_cliente()
+
             else:
                 QMessageBox.information(None, 'Atualizar Cliente', 'Dados do Clietne nao foram Atualizados!')
                 self.tela_busca_modifica_cliente.lineEdit_cpf.setText('')
                 self.tela_busca_modifica_cliente.lineEdit_nome.setText('')
                 self.tela_busca_modifica_cliente.lineEdit_endereco.setText('')
-                self.tela_busca_modifica_cliente.lineEdit_nascimento.setText('')
+                self.tela_busca_modifica_cliente.lineEdit_nascimento.setDate(QDate(2000, 1, 1))
                 self.tela_busca_modifica_cliente.lineEdit_email.setText('')
                 self.tela_busca_modifica_cliente.lineEdit_telefone.setText('')
                 self.tela_busca_modifica_cliente.lineEdit_busca_cpf.setText('')
@@ -402,17 +424,17 @@ class Main(QMainWindow,Ui_Main):
                 self.tela_busca_modifica_cliente.lineEdit_cpf.setText('')
                 self.tela_busca_modifica_cliente.lineEdit_nome.setText('')
                 self.tela_busca_modifica_cliente.lineEdit_endereco.setText('')
-                self.tela_busca_modifica_cliente.lineEdit_nascimento.setText('')
+                self.tela_busca_modifica_cliente.lineEdit_nascimento.setDate(QDate(2000, 1, 1))
                 self.tela_busca_modifica_cliente.lineEdit_email.setText('')
                 self.tela_busca_modifica_cliente.lineEdit_telefone.setText('')
                 self.tela_busca_modifica_cliente.lineEdit_busca_cpf.setText('')
-                self.cadastro.cliente_todos = []
+                self.rezetar_tabela_cliente()
             else:
                 QMessageBox.information(None, 'Remover Cliente', 'Nao foi possivel realziar a remocao!')
                 self.tela_busca_modifica_cliente.lineEdit_cpf.setText('')
                 self.tela_busca_modifica_cliente.lineEdit_nome.setText('')
                 self.tela_busca_modifica_cliente.lineEdit_endereco.setText('')
-                self.tela_busca_modifica_cliente.lineEdit_nascimento.setText('')
+                self.tela_busca_modifica_cliente.lineEdit_nascimento.setDate(QDate(2000, 1, 1))
                 self.tela_busca_modifica_cliente.lineEdit_email.setText('')
                 self.tela_busca_modifica_cliente.lineEdit_telefone.setText('')
                 self.tela_busca_modifica_cliente.lineEdit_busca_cpf.setText('')
