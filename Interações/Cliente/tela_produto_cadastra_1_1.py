@@ -633,7 +633,7 @@ class Tela_Produto_Cadastra(object):
         self.lineEdit_v_compra_uni.setPlaceholderText(_translate("MainWindow", "Valor de compra Unidade"))
         self.lineEdit_re_venda_uni.setPlaceholderText(_translate("MainWindow", "Valor de re-venda Unidade"))
         self.lineEdit_id_forncedor.setPlaceholderText(_translate("MainWindow", "Id do Fornecedor"))
-        self.pushButton_cadastrafornecedor.setText(_translate("MainWindow", "Cadastrar Fornecedor"))
+        self.pushButton_cadastrafornecedor.setText(_translate("MainWindow", "Cadastrar Produto"))
         self.label_2.setText(_translate("MainWindow", "Cadastrar Vinho"))
         self.pushButton_mostrar_mais.setText(_translate("MainWindow", "Mostrar mais ..."))
         item = self.textEdit_tabela_fornecedores.horizontalHeaderItem(0)

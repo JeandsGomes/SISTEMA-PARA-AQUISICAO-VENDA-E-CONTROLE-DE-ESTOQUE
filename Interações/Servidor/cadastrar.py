@@ -505,7 +505,7 @@ ENGINE = InnoDB;"""
                 conexao = mysql.connect(host = 'localhost',db='mydb_2',user='root')
                 cursor = conexao.cursor()
 
-                cursor.execute('INSERT INTO Produto (nome_da_bebida,numero_do_lote,data_de_fabricacao,data_validade,condicoes_de_armazenamento,quantidade,local_armazenado,valor_de_compra_UN,valor_revenda_UN,Fornecedor_idFornecedor) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)' , (bd_n_bebida,bd_nome_da_bebida,bd_data_de_fabricacao,bd_data_de_validade,bd_condicoes_de_armazenamento,bd_quantidades,bd_local_armazenado,bd_valor_de_compra_UN,bd_valor_revenda_UN,fornecedor[0][0]))
+                cursor.execute('INSERT INTO Produto (numero_do_lote,nome_da_bebida,data_de_fabricacao,data_validade,condicoes_de_armazenamento,quantidade,local_armazenado,valor_de_compra_UN,valor_revenda_UN,Fornecedor_idFornecedor) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)' , (bd_n_bebida,bd_nome_da_bebida,bd_data_de_fabricacao,bd_data_de_validade,bd_condicoes_de_armazenamento,bd_quantidades,bd_local_armazenado,bd_valor_de_compra_UN,bd_valor_revenda_UN,fornecedor[0][0]))
 
                 conexao.commit()
                 conexao.close()

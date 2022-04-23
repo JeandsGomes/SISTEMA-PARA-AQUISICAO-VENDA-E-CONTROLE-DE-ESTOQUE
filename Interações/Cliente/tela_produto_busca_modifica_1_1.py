@@ -652,8 +652,8 @@ class Tela_Produto_Busca_Modifica(object):
         self.pushButton_sair.setText(_translate("MainWindow", "Sair"))
         self.lineEdit_2.setPlaceholderText(_translate("MainWindow", "Numero da Bibida"))
         self.pushButton_busca.setText(_translate("MainWindow", "Buscar"))
-        self.pushButton_atualiza.setText(_translate("MainWindow", "Atualizar Fornecedor"))
-        self.pushButton_cadastro_cadastrar_17.setText(_translate("MainWindow", "Remover Fornecedor"))
+        self.pushButton_atualiza.setText(_translate("MainWindow", "Atualizar Produto"))
+        self.pushButton_cadastro_cadastrar_17.setText(_translate("MainWindow", "Remover Produto"))
         self.lineEdit_6.setPlaceholderText(_translate("MainWindow", "Numero da Bebida (Remoção)"))
         self.lineEdit_3.setPlaceholderText(_translate("MainWindow", "Nome da Bebida"))
         self.label_6.setText(_translate("MainWindow", "Fabricacão:"))
@@ -665,7 +665,6 @@ class Tela_Produto_Busca_Modifica(object):
         self.lineEdit_12.setPlaceholderText(_translate("MainWindow", "Valor de re-venda Unidade"))
         self.lineEdit_11.setPlaceholderText(_translate("MainWindow", "Id do Fornecedor"))
         self.label_2.setText(_translate("MainWindow", "Atualizar, Remoção ou Buscar Vinhos"))
-
 
 if __name__ == "__main__":
     import sys

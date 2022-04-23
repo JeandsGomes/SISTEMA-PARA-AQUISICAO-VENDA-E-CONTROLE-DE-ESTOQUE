@@ -1094,7 +1094,7 @@ QPushButton:pressed{
 </string>
         </property>
         <property name="text">
-         <string>Cadastrar Fornecedor</string>
+         <string>Cadastrar Produto</string>
         </property>
        </widget>
       </widget>

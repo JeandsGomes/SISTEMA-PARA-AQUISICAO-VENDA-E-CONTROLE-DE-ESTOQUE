@@ -854,7 +854,7 @@ QPushButton:pressed{
 </string>
         </property>
         <property name="text">
-         <string>Atualizar Fornecedor</string>
+         <string>Atualizar Produto</string>
         </property>
        </widget>
        <widget class="QPushButton" name="pushButton_cadastro_cadastrar_17">
@@ -911,7 +911,7 @@ QPushButton:pressed{
 </string>
         </property>
         <property name="text">
-         <string>Remover Fornecedor</string>
+         <string>Remover Produto</string>
         </property>
        </widget>
        <widget class="QFrame" name="frame_9">

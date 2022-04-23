@@ -79,6 +79,7 @@ class Tela_Login(object):
         self.login_lineEdit_senha.setInputMask("")
         self.login_lineEdit_senha.setText("")
         self.login_lineEdit_senha.setObjectName("login_lineEdit_senha")
+        self.login_lineEdit_senha.setEchoMode(QtWidgets.QLineEdit.Password)
         self.verticalLayout_4.addWidget(self.login_lineEdit_senha)
         self.verticalLayout_3.addWidget(self.frame_4)
         self.login_confirmacao = QtWidgets.QFrame(self.login_conteudo)

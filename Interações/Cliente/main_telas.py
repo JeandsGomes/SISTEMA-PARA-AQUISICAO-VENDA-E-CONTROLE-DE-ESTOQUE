@@ -93,6 +93,8 @@ class Main(QMainWindow,Ui_Main):
         self.cadastro = plataforma_funcionario()
         self.row_vendas = 0
         self.row_cliente = 0
+        self.row_fornecedores = 0
+        self.row_produto = 0
         #
 
         #Botões
@@ -191,6 +193,17 @@ class Main(QMainWindow,Ui_Main):
         self.tela_busca_modifica_produto.pushButton_atualiza.clicked.connect(self.botaoAtualizaProduto)
         self.tela_busca_modifica_produto.pushButton_cadastro_cadastrar_17.clicked.connect(self.botaoRemoveProduto)
 
+    def reseta_lines_edite_funcionario(self):
+        #self.tela_cadastro.lineEdit_cadastro_nome.setText('')
+        self.tela_cadastro.cadastro_lineEdit_nome_completo.setText('')
+        self.tela_cadastro.cadastro_lineEdit_cpf.setText('')
+        date = QDate(2000, 1, 1)
+        self.tela_cadastro.cadastro_lineEdit_data_nascimento.setDate(date)
+        self.tela_cadastro.cadastro_lineEdit_email.setText('')
+        self.tela_cadastro.cadastro_lineEdit_telefone.setText('')
+        #self.tela_cadastro.cadastro_lineEdit_telefone_2.setText('')
+        self.tela_cadastro.cadastro_lineEdit_senha.setText('')
+
     def botaoCadastro(self):
         #nome,CPF,data_de_ascimento,email,telefone,Cargo,senha
         nome = self.tela_cadastro.cadastro_lineEdit_nome_completo.text()
@@ -207,26 +220,11 @@ class Main(QMainWindow,Ui_Main):
         if(nome !='' or CPF !='' or data_de_ascimento !='' or email !='' or telefone !='' or Cargo !='' or senha !=''):
             if(self.cadastro.cadastro_funcionario(nome,CPF,data_de_ascimento,email,telefone,Cargo,senha)):
                 QMessageBox.information(None, 'Cadastro Funcionario', 'Cadastro realizado!')
-                #self.tela_cadastro.lineEdit_cadastro_nome.setText('')
-                self.tela_cadastro.cadastro_lineEdit_nome_completo.setText('')
-                self.tela_cadastro.cadastro_lineEdit_cpf.setText('')
-                date = QDate(2000, 1, 1)
-                self.tela_cadastro.cadastro_lineEdit_data_nascimento.setDate(date)
-                self.tela_cadastro.cadastro_lineEdit_email.setText('')
-                self.tela_cadastro.cadastro_lineEdit_telefone.setText('')
-                #self.tela_cadastro.cadastro_lineEdit_telefone_2.setText('')
-                self.tela_cadastro.cadastro_lineEdit_senha.setText('')
+                self.reseta_lines_edite_funcionario()
 
             else:
                 QMessageBox.information(None, 'Cadastro Funcioanrio', 'Nao foi possivel realizar o cadastro!')
-                self.tela_cadastro.cadastro_lineEdit_nome_completo.setText('')
-                self.tela_cadastro.cadastro_lineEdit_cpf.setText('')
-                date = QDate(2000, 1, 1)
-                self.tela_cadastro.cadastro_lineEdit_data_nascimento.setDate(date)
-                self.tela_cadastro.cadastro_lineEdit_email.setText('')
-                self.tela_cadastro.cadastro_lineEdit_telefone.setText('')
-                #self.tela_cadastro.cadastro_lineEdit_telefone_2.setText('')
-                self.tela_cadastro.cadastro_lineEdit_senha.setText('')
+                self.reseta_lines_edite_funcionario()
         else:
             QMessageBox.information(None, 'Cadastro Funcioanrio', 'Todos os campos devem ser preenchidos!')
 
@@ -269,8 +267,6 @@ class Main(QMainWindow,Ui_Main):
         #textEdit_tabela_vendas
         #self.tela_menu_inicial.textEdit_tabela_vendas.setText(historico)
 
-        
-
     def botaoRealizaVendas(self):
         #cadastrar_venda(self,forma_de_pagamento,data_da_venda,n_bebida,cpf_cliente,cpf_funcionario,senha_funcionario)
         qnt_vendas = self.tela_menu_inicial.lineEdit_quabtidade.text()
@@ -280,12 +276,13 @@ class Main(QMainWindow,Ui_Main):
         data_da_venda= '18-11-2021'
         n_bebida= self.tela_menu_inicial.lineEdit_index_bebida.text()
         cpf_cliente= self.tela_menu_inicial.lineEdit_index_cliente.text()
-        cpf_funcionario= self.cadastro.funcionario[1]
+        cpf_funcionario= self.cadastro.funcionario[2]
         senha_funcionario= self.cadastro.funcionario[3]
 
         if(int(qnt_vendas) > 0):
             for i in range(0,int(qnt_vendas)):
                 if(forma_de_pagamento !='' or n_bebida !='' or cpf_cliente !=''):
+                    print('cpf_funcionario:',cpf_funcionario)
                     if(self.cadastro.cadastrar_venda(forma_de_pagamento,data_da_venda,n_bebida,cpf_cliente,cpf_funcionario,senha_funcionario)):
                         QMessageBox.information(None, 'Realizar venda', 'Venda Realizada!')
                         #self.tela_cadastro.lineEdit_cadastro_nome.setText('')
@@ -304,6 +301,7 @@ class Main(QMainWindow,Ui_Main):
                         #self.tela_menu_inicial.lineEdit_index_forma_pagamento.setText('')
                         self.tela_menu_inicial.lineEdit_index_bebida.setText('')
                         self.tela_menu_inicial.lineEdit_index_cliente.setText('')
+                        break
                 else:
                     QMessageBox.information(None, 'Realizar venda', 'Todos os campos devem ser preenchidos!')
         else:
@@ -326,6 +324,14 @@ class Main(QMainWindow,Ui_Main):
             self.tela_cadastra_cliente.tableWidget_tabela_vendas.setItem(index, 4, QtWidgets.QTableWidgetItem(str(self.cadastro.cliente_todos[index][4])))
             self.tela_cadastra_cliente.tableWidget_tabela_vendas.setItem(index, 5, QtWidgets.QTableWidgetItem(str(self.cadastro.cliente_todos[index][5])))
 
+    def reseta_lines_edite_cliente_cadastra(self):
+        self.tela_cadastra_cliente.lineEdit_nome_completo.setText('')
+        self.tela_cadastra_cliente.lineEdit_cpf.setText('')
+        self.tela_cadastra_cliente.lineEdit_endereco.setText('')
+        self.tela_cadastra_cliente.lineEdit_data_nascimento.setDate(QDate(2000, 1, 1))
+        self.tela_cadastra_cliente.lineEdit_email.setText('')
+        self.tela_cadastra_cliente.lineEdit_n_telefone.setText('')
+
     def botaoCadastrarCliente(self):
         #nome,cpf,edereco,data_de_nascimento,email,telefone
 
@@ -343,25 +349,23 @@ class Main(QMainWindow,Ui_Main):
                 QMessageBox.information(None, 'Cadastro Cliente', 'Cadastro realizado!')
                 #self.tela_cadastro.lineEdit_cadastro_nome.setText('')
 
-                self.tela_cadastra_cliente.lineEdit_nome_completo.setText('')
-                self.tela_cadastra_cliente.lineEdit_cpf.setText('')
-                self.tela_cadastra_cliente.lineEdit_endereco.setText('')
-                self.tela_cadastra_cliente.lineEdit_data_nascimento.setDate(QDate(2000, 1, 1))
-                self.tela_cadastra_cliente.lineEdit_email.setText('')
-                self.tela_cadastra_cliente.lineEdit_n_telefone.setText('')
+                self.reseta_lines_edite_cliente_cadastra()
                 self.botaoMostrarMaisCliente()
 
             else:
                 QMessageBox.information(None, 'Cadastro Cliente', 'Nao foi possivel realizar o cadastro!')
-                self.tela_cadastra_cliente.lineEdit_nome_completo.setText('')
-                self.tela_cadastra_cliente.lineEdit_cpf.setText('')
-                self.tela_cadastra_cliente.lineEdit_endereco.setText('')
-                self.tela_cadastra_cliente.lineEdit_data_nascimento.setDate(QDate(2000, 1, 1))
-                self.tela_cadastra_cliente.lineEdit_email.setText('')
-                self.tela_cadastra_cliente.lineEdit_n_telefone.setText('')
+                self.reseta_lines_edite_cliente_cadastra()
         else:
             QMessageBox.information(None, 'Cadastro Cliente', 'Todos os campos devem ser preenchidos!')
         
+    def reseta_lines_edite_Cliente_busco(self):
+        self.tela_busca_modifica_cliente.lineEdit_cpf.setText('')
+        self.tela_busca_modifica_cliente.lineEdit_nome.setText('')
+        self.tela_busca_modifica_cliente.lineEdit_endereco.setText('')
+        self.tela_busca_modifica_cliente.lineEdit_nascimento.setDate(QDate(2000, 1, 1))
+        self.tela_busca_modifica_cliente.lineEdit_email.setText('')
+        self.tela_busca_modifica_cliente.lineEdit_telefone.setText('')
+        self.tela_busca_modifica_cliente.lineEdit_busca_cpf.setText('')
 
     def botaoBuscaClieten(self):
         cpf = self.tela_busca_modifica_cliente.lineEdit_busca_cpf.text()
@@ -379,6 +383,7 @@ class Main(QMainWindow,Ui_Main):
         else:
             QMessageBox.information(None, 'Buscar Cliente', 'Cliente nao encontrado!')
             self.tela_busca_modifica_cliente.lineEdit_busca_cpf.setText('')
+            self.reseta_lines_edite_Cliente_busco()
 
     def rezetar_tabela_cliente(self):
         self.cadastro.cliente_todos = []
@@ -400,16 +405,10 @@ class Main(QMainWindow,Ui_Main):
                 #print(self.cadastro.cliete)
                 QMessageBox.information(None, 'Atualizar Cliente', 'Dados do Clietne Atualizados com sucesso!')
                 self.rezetar_tabela_cliente()
-
             else:
+                self.reseta_lines_edite_Cliente_busco()
                 QMessageBox.information(None, 'Atualizar Cliente', 'Dados do Clietne nao foram Atualizados!')
-                self.tela_busca_modifica_cliente.lineEdit_cpf.setText('')
-                self.tela_busca_modifica_cliente.lineEdit_nome.setText('')
-                self.tela_busca_modifica_cliente.lineEdit_endereco.setText('')
-                self.tela_busca_modifica_cliente.lineEdit_nascimento.setDate(QDate(2000, 1, 1))
-                self.tela_busca_modifica_cliente.lineEdit_email.setText('')
-                self.tela_busca_modifica_cliente.lineEdit_telefone.setText('')
-                self.tela_busca_modifica_cliente.lineEdit_busca_cpf.setText('')
+
         else:
             QMessageBox.information(None, 'Atualizar Cliente', 'Nescessario que todos os campos sejam preenchidos!')
 
@@ -421,35 +420,38 @@ class Main(QMainWindow,Ui_Main):
             if(self.cadastro.remover_cliente(cpf)):
                 #print(self.cadastro.cliete)
                 QMessageBox.information(None, 'Remover Cliente', 'Clietne Removido!')
-                self.tela_busca_modifica_cliente.lineEdit_cpf.setText('')
-                self.tela_busca_modifica_cliente.lineEdit_nome.setText('')
-                self.tela_busca_modifica_cliente.lineEdit_endereco.setText('')
-                self.tela_busca_modifica_cliente.lineEdit_nascimento.setDate(QDate(2000, 1, 1))
-                self.tela_busca_modifica_cliente.lineEdit_email.setText('')
-                self.tela_busca_modifica_cliente.lineEdit_telefone.setText('')
-                self.tela_busca_modifica_cliente.lineEdit_busca_cpf.setText('')
+                self.reseta_lines_edite_Cliente_busco()
                 self.rezetar_tabela_cliente()
             else:
                 QMessageBox.information(None, 'Remover Cliente', 'Nao foi possivel realziar a remocao!')
-                self.tela_busca_modifica_cliente.lineEdit_cpf.setText('')
-                self.tela_busca_modifica_cliente.lineEdit_nome.setText('')
-                self.tela_busca_modifica_cliente.lineEdit_endereco.setText('')
-                self.tela_busca_modifica_cliente.lineEdit_nascimento.setDate(QDate(2000, 1, 1))
-                self.tela_busca_modifica_cliente.lineEdit_email.setText('')
-                self.tela_busca_modifica_cliente.lineEdit_telefone.setText('')
-                self.tela_busca_modifica_cliente.lineEdit_busca_cpf.setText('')
+                self.reseta_lines_edite_Cliente_busco()
         else:
             QMessageBox.information(None, 'Remover Cliente', 'Nescessario pelomenos o campo do CPF prenchido!')
 
     def botaoMostrarMaisFornecedor(self):
         #razao_social,CNPJ,nacionalidade,endereco,telefone,passoa_contato
         self.cadastro.buscar_todos_fornecedores()
-        #print(self.cadastro.cliente_todos)
-        historico = 'razao_social/CNPJ/nacionalidade/endereco,telefone/passoa_contato\n'
-        for i in self.cadastro.fornecedor_todos:
-            historico = historico+i[0]+'/'+i[1]+'/'+i[2]+'/'+i[3]+'/'+i[4]+'/'+i[5]+'\n'
-        #textEdit_tabela_vendas
-        self.tela_cadastra_fornecedor.textEdit_tabela_fornecedores.setText(historico)
+        last_row = self.row_fornecedores
+        self.row_fornecedores = len(self.cadastro.fornecedor_todos)
+        self.tela_cadastra_fornecedor.textEdit_tabela_fornecedores.setRowCount(self.row_fornecedores)
+        for index in range(last_row,self.row_fornecedores):
+            #print(i)
+            print('self.cadastro.fornecedor_todos[index]:',self.cadastro.fornecedor_todos[index])
+            self.tela_cadastra_fornecedor.textEdit_tabela_fornecedores.setItem(index, 0, QtWidgets.QTableWidgetItem(str(self.cadastro.fornecedor_todos[index][0])))
+            self.tela_cadastra_fornecedor.textEdit_tabela_fornecedores.setItem(index, 1, QtWidgets.QTableWidgetItem(str(self.cadastro.fornecedor_todos[index][1])))
+            self.tela_cadastra_fornecedor.textEdit_tabela_fornecedores.setItem(index, 2, QtWidgets.QTableWidgetItem(str(self.cadastro.fornecedor_todos[index][2])))
+            self.tela_cadastra_fornecedor.textEdit_tabela_fornecedores.setItem(index, 3, QtWidgets.QTableWidgetItem(str(self.cadastro.fornecedor_todos[index][3])))
+            self.tela_cadastra_fornecedor.textEdit_tabela_fornecedores.setItem(index, 4, QtWidgets.QTableWidgetItem(str(self.cadastro.fornecedor_todos[index][4])))
+            self.tela_cadastra_fornecedor.textEdit_tabela_fornecedores.setItem(index, 5, QtWidgets.QTableWidgetItem(str(self.cadastro.fornecedor_todos[index][5])))
+
+    def reseta_lines_edite_fornecedor_cadastra(self):
+        self.tela_cadastra_fornecedor.lineEdit_razao_social.setText('')
+        self.tela_cadastra_fornecedor.lineEdit_cnpj.setText('')
+        self.tela_cadastra_fornecedor.lineEdit_nacionalidade.setText('')
+        self.tela_cadastra_fornecedor.lineEdit_endereco.setText('')
+        self.tela_cadastra_fornecedor.lineEdit_telefone.setText('')
+        self.tela_cadastra_fornecedor.lineEdit_pessoa.setText('')
+
 
     def botaoCadastraFornecedor(self):
         #razao_social,CNPJ,nacionalidade,endereco,telefone,passoa_contato
@@ -467,24 +469,23 @@ class Main(QMainWindow,Ui_Main):
                 QMessageBox.information(None, 'Cadastro Fornecedor', 'Cadastro realizado!')
                 #self.tela_cadastro.lineEdit_cadastro_nome.setText('')
 
-                self.tela_cadastra_fornecedor.lineEdit_razao_social.setText('')
-                self.tela_cadastra_fornecedor.lineEdit_cnpj.setText('')
-                self.tela_cadastra_fornecedor.lineEdit_nacionalidade.setText('')
-                self.tela_cadastra_fornecedor.lineEdit_endereco.setText('')
-                self.tela_cadastra_fornecedor.lineEdit_telefone.setText('')
-                self.tela_cadastra_fornecedor.lineEdit_pessoa.setText('')
+                self.reseta_lines_edite_fornecedor_cadastra()
                 self.botaoMostrarMaisFornecedor()
 
             else:
                 QMessageBox.information(None, 'Cadastro Fornecedor', 'Nao foi possivel realizar o cadastro!')
-                self.tela_cadastra_fornecedor.lineEdit_razao_social.setText('')
-                self.tela_cadastra_fornecedor.lineEdit_cnpj.setText('')
-                self.tela_cadastra_fornecedor.lineEdit_nacionalidade.setText('')
-                self.tela_cadastra_fornecedor.lineEdit_endereco.setText('')
-                self.tela_cadastra_fornecedor.lineEdit_telefone.setText('')
-                self.tela_cadastra_fornecedor.lineEdit_pessoa.setText('')
+                self.reseta_lines_edite_fornecedor_cadastra()
         else:
             QMessageBox.information(None, 'Cadastro Fornecedor', 'Todos os campos devem ser preenchidos!')
+
+    def reseta_lines_edite_fornecedor_busca(self):
+        self.tela_busca_modifica_fornecedor.lineEdit_cnpj.setText('')
+        self.tela_busca_modifica_fornecedor.lineEdit_rasao_social.setText('')
+        self.tela_busca_modifica_fornecedor.lineEdit_nacionalida.setText('')
+        self.tela_busca_modifica_fornecedor.lineEdit_endereco.setText('')
+        self.tela_busca_modifica_fornecedor.lineEdit_telefone.setText('')
+        self.tela_busca_modifica_fornecedor.lineEdit_pessoa.setText('')
+        self.tela_busca_modifica_fornecedor.lineEdit_cnpj_buscar.setText('')
 
     def botaoBuscaFornecedor(self):
         cpf = self.tela_busca_modifica_fornecedor.lineEdit_cnpj_buscar.text()
@@ -499,14 +500,16 @@ class Main(QMainWindow,Ui_Main):
             self.tela_busca_modifica_fornecedor.lineEdit_pessoa.setText(self.cadastro.fornecedor[6])
             QMessageBox.information(None, 'Buscar Fornecedor', 'Fornecedor encontrado com sucesso!')
         else:
-            self.tela_busca_modifica_fornecedor.lineEdit_cnpj.setText('')
-            self.tela_busca_modifica_fornecedor.lineEdit_rasao_social.setText('')
-            self.tela_busca_modifica_fornecedor.lineEdit_nacionalida.setText('')
-            self.tela_busca_modifica_fornecedor.lineEdit_endereco.setText('')
-            self.tela_busca_modifica_fornecedor.lineEdit_telefone.setText('')
-            self.tela_busca_modifica_fornecedor.lineEdit_pessoa.setText('')
+            self.reseta_lines_edite_fornecedor_busca()
             QMessageBox.information(None, 'Buscar Fornecedor', 'Fornecedor nao encontrado!')
-            self.tela_busca_modifica_fornecedor.lineEdit_cnpj_buscar.setText('')
+
+    def rezetar_tabela_Fornecedor(self):
+        print('Entrou aqui!!!!')
+        print('Antes >> self.cadastro.fornecedor_todos:',self.cadastro.fornecedor_todos)
+        self.cadastro.fornecedor_todos = []
+        print('Depois >> self.cadastro.fornecedor_todos:',self.cadastro.fornecedor_todos)
+        self.row_fornecedores = 0
+        self.botaoMostrarMaisFornecedor()
 
     def botaoAtualizaFornecedor(self):
         #atualziar_fornecedor(self,razao_social,CNPJ,nacionalidade,endereco,telefone,passoa_contato)
@@ -519,16 +522,15 @@ class Main(QMainWindow,Ui_Main):
         if(razao_social != '' or CNPJ != '' or nacionalidade != ''or endereco != ''or passoa_contato != ''or telefone != ''):
             if(self.cadastro.atualziar_fornecedor(razao_social,CNPJ,nacionalidade,endereco,telefone,passoa_contato)):
                 #print(self.cadastro.cliete)
-                QMessageBox.information(None, 'Atualizar Fornecedor', 'Dados do Fornecedor Atualizados com sucesso!')
+                #self.rezetar_tabela_Fornecedor()
                 self.cadastro.fornecedor_todos = []
+                self.row_fornecedores = 0
+                self.botaoMostrarMaisFornecedor()
+                QMessageBox.information(None, 'Atualizar Fornecedor', 'Dados do Fornecedor Atualizados com sucesso!')
+                
             else:
                 QMessageBox.information(None, 'Atualizar Fornecedor', 'Dados do Fornecedor nao foram Atualizados!')
-                self.tela_busca_modifica_fornecedor.lineEdit_rasao_social.setText('')
-                self.tela_busca_modifica_fornecedor.lineEdit_cnpj.setText('')
-                self.tela_busca_modifica_fornecedor.lineEdit_nacionalidade.setText('')
-                self.tela_busca_modifica_fornecedor.lineEdit_endereco.setText('')
-                self.tela_busca_modifica_fornecedor.lineEdit_telefone.setText('')
-                self.tela_busca_modifica_fornecedor.lineEdit_pessoa.setText('')
+                self.reseta_lines_edite_fornecedor_busca()
         else:
             QMessageBox.information(None, 'Atualizar Cliente', 'Nescessario que todos os campos sejam preenchidos!')
 
@@ -540,37 +542,47 @@ class Main(QMainWindow,Ui_Main):
             if(self.cadastro.remover_fornecedor(CNPJ)):
                 #print(self.cadastro.cliete)
                 QMessageBox.information(None, 'Remover Fornecedor', 'Fornecedor Removido!')
-                self.tela_busca_modifica_fornecedor.lineEdit_cnpj_buscar.setText('')
-                self.tela_busca_modifica_fornecedor.lineEdit_cnpj.setText('')
-                self.tela_busca_modifica_fornecedor.lineEdit_rasao_social.setText('')
-                self.tela_busca_modifica_fornecedor.lineEdit_nacionalida.setText('')
-                self.tela_busca_modifica_fornecedor.lineEdit_endereco.setText('')
-                self.tela_busca_modifica_fornecedor.lineEdit_telefone.setText('')
-                self.tela_busca_modifica_fornecedor.lineEdit_pessoa.setText('')
-
+                self.reseta_lines_edite_fornecedor_busca()
                 self.cadastro.fornecedor_todos = []
+                self.row_fornecedores = 0
+                self.botaoMostrarMaisFornecedor()
             else:
                 QMessageBox.information(None, 'Remover Fornecedor', 'Nao foi possivel realziar a remocao!')
-                self.tela_busca_modifica_fornecedor.lineEdit_cnpj_buscar.setText('')
-                self.tela_busca_modifica_fornecedor.lineEdit_cnpj.setText('')
-                self.tela_busca_modifica_fornecedor.lineEdit_rasao_social.setText('')
-                self.tela_busca_modifica_fornecedor.lineEdit_nacionalida.setText('')
-                self.tela_busca_modifica_fornecedor.lineEdit_endereco.setText('')
-                self.tela_busca_modifica_fornecedor.lineEdit_telefone.setText('')
-                self.tela_busca_modifica_fornecedor.lineEdit_pessoa.setText('')
+                self.reseta_lines_edite_fornecedor_busca()
         else:
             QMessageBox.information(None, 'Remover Fornecedor', 'Nescessario pelomenos o campo do CNPJ prenchido!')
 
 
     def botaoMostrarMaisProduto(self):
+
         #razao_social,CNPJ,nacionalidade,endereco,telefone,passoa_contato
         self.cadastro.buscar_produto_todos()
-        print(self.cadastro.prdotos_todas)
-        historico = 'n_bebida/nome/fabricacao/validade/armazenamento/quantidades/local/valor\n'
-        for i in self.cadastro.prdotos_todas:
-            historico = historico+i[0]+'/'+i[1]+'/'+i[2]+'/'+i[3]+'/'+i[4]+'/'+i[5]+'/'+i[7]+'\n'
-        #textEdit_tabela_vendas
-        self.tela_cadastra_produto.textEdit_tabela_produto.setText(historico)
+        last_row = self.row_produto
+        self.row_produto = len(self.cadastro.prdotos_todas)
+        self.tela_cadastra_produto.textEdit_tabela_fornecedores.setRowCount(self.row_produto)
+        for index in range(last_row,self.row_produto):
+            #print(i)
+            print('self.cadastro.fornecedor_todos[index]:',self.cadastro.prdotos_todas[index])
+            self.tela_cadastra_produto.textEdit_tabela_fornecedores.setItem(index, 0, QtWidgets.QTableWidgetItem(str(self.cadastro.prdotos_todas[index][1])))
+            self.tela_cadastra_produto.textEdit_tabela_fornecedores.setItem(index, 1, QtWidgets.QTableWidgetItem(str(self.cadastro.prdotos_todas[index][0])))
+            self.tela_cadastra_produto.textEdit_tabela_fornecedores.setItem(index, 2, QtWidgets.QTableWidgetItem(str(self.cadastro.prdotos_todas[index][2])))
+            self.tela_cadastra_produto.textEdit_tabela_fornecedores.setItem(index, 3, QtWidgets.QTableWidgetItem(str(self.cadastro.prdotos_todas[index][3])))
+            self.tela_cadastra_produto.textEdit_tabela_fornecedores.setItem(index, 4, QtWidgets.QTableWidgetItem(str(self.cadastro.prdotos_todas[index][4])))
+            self.tela_cadastra_produto.textEdit_tabela_fornecedores.setItem(index, 5, QtWidgets.QTableWidgetItem(str(self.cadastro.prdotos_todas[index][5])))
+            self.tela_cadastra_produto.textEdit_tabela_fornecedores.setItem(index, 6, QtWidgets.QTableWidgetItem(str(self.cadastro.prdotos_todas[index][6])))
+            self.tela_cadastra_produto.textEdit_tabela_fornecedores.setItem(index, 7, QtWidgets.QTableWidgetItem(str(self.cadastro.prdotos_todas[index][7])))
+
+    def resetar_lines_edite_produto_cadastro(self):
+        self.tela_cadastra_produto.lineEdit_n_bebida.setText('')
+        self.tela_cadastra_produto.lineEdit_nome_bebida.setText('')
+        self.tela_cadastra_produto.lineEdit_data_fabricacao.setDate(QDate(2000, 1, 1))
+        self.tela_cadastra_produto.lineEdit_data_vencimento_2.setDate(QDate(2000, 1, 1))
+        self.tela_cadastra_produto.lineEdit_condicoes.setText('')
+        self.tela_cadastra_produto.lineEdit_quantidade.setValue(0)
+        self.tela_cadastra_produto.lineEdit_local.setText('')
+        self.tela_cadastra_produto.lineEdit_v_compra_uni.setText('')
+        self.tela_cadastra_produto.lineEdit_re_venda_uni.setText('')
+        self.tela_cadastra_produto.lineEdit_id_forncedor.setText('')
 
     def botaoCadastraProduto(self):
         #cadastra_produto(self,n_bebida,nome_da_bebida,data_de_fabricacao,data_de_validade,condicoes_de_armazenamento,quantidades,local_armazenado,valor_de_compra_UN,valor_revenda_UN,cnpj_fornecedor)
@@ -578,7 +590,11 @@ class Main(QMainWindow,Ui_Main):
         n_bebida = self.tela_cadastra_produto.lineEdit_n_bebida.text()
         nome_da_bebida= self.tela_cadastra_produto.lineEdit_nome_bebida.text()
         data_de_fabricacao= self.tela_cadastra_produto.lineEdit_data_fabricacao.text()
-        data_de_validade= self.tela_cadastra_produto.lineEdit_data_vencimento.text()
+        data_split = data_de_fabricacao.split('/')
+        data_de_fabricacao = data_split[0]+'-'+data_split[1]+'-'+data_split[2]
+        data_de_validade = self.tela_cadastra_produto.lineEdit_data_vencimento_2.text()
+        data_split = data_de_validade.split('/')
+        data_de_validade = data_split[0]+'-'+data_split[1]+'-'+data_split[2]
         condicoes_de_armazenamento= self.tela_cadastra_produto.lineEdit_condicoes.text()
         quantidades= self.tela_cadastra_produto.lineEdit_quantidade.text()
         local_armazenado= self.tela_cadastra_produto.lineEdit_local.text()
@@ -591,30 +607,12 @@ class Main(QMainWindow,Ui_Main):
                 QMessageBox.information(None, 'Cadastro Produto', 'Cadastro realizado!')
                 #self.tela_cadastro.lineEdit_cadastro_nome.setText('')
 
-                self.tela_cadastra_produto.lineEdit_n_bebida.setText('')
-                self.tela_cadastra_produto.lineEdit_nome_bebida.setText('')
-                self.tela_cadastra_produto.lineEdit_data_fabricacao.setText('')
-                self.tela_cadastra_produto.lineEdit_data_vencimento.setText('')
-                self.tela_cadastra_produto.lineEdit_condicoes.setText('')
-                self.tela_cadastra_produto.lineEdit_quantidade.setText('')
-                self.tela_cadastra_produto.lineEdit_local.setText('')
-                self.tela_cadastra_produto.lineEdit_v_compra_uni.setText('')
-                self.tela_cadastra_produto.lineEdit_re_venda_uni.setText('')
-                self.tela_cadastra_produto.lineEdit_id_forncedor.setText('')
+                self.resetar_lines_edite_produto_cadastro()
                 self.botaoMostrarMaisProduto()
 
             else:
                 QMessageBox.information(None, 'Cadastro Produto', 'Nao foi possivel realizar o cadastro!')
-                self.tela_cadastra_produto.lineEdit_n_bebida.setText('')
-                self.tela_cadastra_produto.lineEdit_nome_bebida.setText('')
-                self.tela_cadastra_produto.lineEdit_data_fabricacao.setText('')
-                self.tela_cadastra_produto.lineEdit_data_vencimento.setText('')
-                self.tela_cadastra_produto.lineEdit_condicoes.setText('')
-                self.tela_cadastra_produto.lineEdit_quantidade.setText('')
-                self.tela_cadastra_produto.lineEdit_local.setText('')
-                self.tela_cadastra_produto.lineEdit_v_compra_uni.setText('')
-                self.tela_cadastra_produto.lineEdit_re_venda_uni.setText('')
-                self.tela_cadastra_produto.lineEdit_id_forncedor.setText('')
+                self.resetar_lines_edite_produto_cadastro()
         else:
             QMessageBox.information(None, 'Cadastro Produto', 'Todos os campos devem ser preenchidos!')
 
@@ -622,20 +620,37 @@ class Main(QMainWindow,Ui_Main):
         cpf = self.tela_busca_modifica_produto.lineEdit_2.text()
         if(self.cadastro.buscar_produto(cpf)):
             #print(self.cadastro.cliete)
-            self.tela_busca_modifica_produto.lineEdit_6.setText(self.cadastro.prdotos[1])
-            self.tela_busca_modifica_produto.lineEdit_3.setText(self.cadastro.prdotos[2])
-            self.tela_busca_modifica_produto.lineEdit_7.setText(self.cadastro.prdotos[3])
-            self.tela_busca_modifica_produto.lineEdit_14.setText(self.cadastro.prdotos[4])
+            self.tela_busca_modifica_produto.lineEdit_6.setText(self.cadastro.prdotos[2])
+            self.tela_busca_modifica_produto.lineEdit_3.setText(self.cadastro.prdotos[1])
+            self.tela_busca_modifica_produto.lineEdit_7.setDate(QDate(2000, 1, 1))
+            self.tela_busca_modifica_produto.lineEdit_14.setDate(QDate(2000, 1, 1))
             self.tela_busca_modifica_produto.lineEdit_15.setText(self.cadastro.prdotos[5])
-            self.tela_busca_modifica_produto.lineEdit_8.setText(self.cadastro.prdotos[6])
+            self.tela_busca_modifica_produto.lineEdit_8.setValue(int(self.cadastro.prdotos[6]))
             self.tela_busca_modifica_produto.lineEdit_9.setText(self.cadastro.prdotos[7])
             self.tela_busca_modifica_produto.lineEdit_10.setText(self.cadastro.prdotos[8])
             self.tela_busca_modifica_produto.lineEdit_12.setText(self.cadastro.prdotos[9])
             self.tela_busca_modifica_produto.lineEdit_11.setText(self.cadastro.prdotos[10])
-            QMessageBox.information(None, 'Buscar Fornecedor', 'Fornecedor encontrado com sucesso!')
+            QMessageBox.information(None, 'Buscar Produto', 'Produto encontrado com sucesso!')
         else:
-            QMessageBox.information(None, 'Buscar Fornecedor', 'Fornecedor nao encontrado!')
-            self.tela_busca_modifica_fornecedor.lineEdit_cnpj_buscar.setText('')
+            QMessageBox.information(None, 'Buscar Produto', 'Produto nao encontrado!')
+            self.tela_busca_modifica_produto.lineEdit_2.setText('')
+
+    def resetar_lines_edite_produto_busca(self):
+        self.tela_busca_modifica_produto.lineEdit_6.setText('')
+        self.tela_busca_modifica_produto.lineEdit_3.setText('')
+        self.tela_busca_modifica_produto.lineEdit_7.setDate(QDate(2000, 1, 1))
+        self.tela_busca_modifica_produto.lineEdit_14.setDate(QDate(2000, 1, 1))
+        self.tela_busca_modifica_produto.lineEdit_15.setText('')
+        self.tela_busca_modifica_produto.lineEdit_8.setValue(0)
+        self.tela_busca_modifica_produto.lineEdit_9.setText('')
+        self.tela_busca_modifica_produto.lineEdit_10.setText('')
+        self.tela_busca_modifica_produto.lineEdit_12.setText('')
+        self.tela_busca_modifica_produto.lineEdit_11.setText('')
+
+    def rezetar_tabela_Fornecedor(self):
+        self.cadastro.prdotos_todas = []
+        self.row_produto = 0
+        self.botaoMostrarMaisProduto()
 
     def botaoAtualizaProduto(self):
         #atualizar_produto(self,n_bebida,nome_da_bebida,data_de_fabricacao,data_de_validade,condicoes_de_armazenamento,quantidades,local_armazenado,valor_de_compra_UN,valor_revenda_UN,cnpj_fornecedor)
@@ -643,7 +658,11 @@ class Main(QMainWindow,Ui_Main):
         n_bebida = self.tela_busca_modifica_produto.lineEdit_6.text()
         nome_da_bebida = self.tela_busca_modifica_produto.lineEdit_3.text()
         data_de_fabricacao = self.tela_busca_modifica_produto.lineEdit_7.text()
+        data_split = data_de_fabricacao.split('/')
+        data_de_fabricacao = data_split[0]+'-'+data_split[1]+'-'+data_split[2]
         data_de_validade = self.tela_busca_modifica_produto.lineEdit_14.text()
+        data_split = data_de_validade.split('/')
+        data_de_validade = data_split[0]+'-'+data_split[1]+'-'+data_split[2]
         condicoes_de_armazenamento = self.tela_busca_modifica_produto.lineEdit_15.text()
         quantidades = self.tela_busca_modifica_produto.lineEdit_8.text()
         local_armazenado = self.tela_busca_modifica_produto.lineEdit_9.text()
@@ -655,56 +674,28 @@ class Main(QMainWindow,Ui_Main):
             if(self.cadastro.atualizar_produto(n_bebida,nome_da_bebida,data_de_fabricacao,data_de_validade,condicoes_de_armazenamento,quantidades,local_armazenado,valor_de_compra_UN,valor_revenda_UN,cnpj_fornecedor)):
                 #print(self.cadastro.cliete)
                 QMessageBox.information(None, 'Atualizar Produto', 'Dados do Produto Atualizados com sucesso!')
-                self.cadastro.prdotos_todas = []
+                self.rezetar_tabela_Fornecedor()
             else:
                 QMessageBox.information(None, 'Atualizar Produto', 'Dados do Produto nao foram Atualizados!')
-
-                self.tela_busca_modifica_produto.lineEdit_6.setText('')
-                self.tela_busca_modifica_produto.lineEdit_3.setText('')
-                self.tela_busca_modifica_produto.lineEdit_7.setText('')
-                self.tela_busca_modifica_produto.lineEdit_14.setText('')
-                self.tela_busca_modifica_produto.lineEdit_15.setText('')
-                self.tela_busca_modifica_produto.lineEdit_8.setText('')
-                self.tela_busca_modifica_produto.lineEdit_9.setText('')
-                self.tela_busca_modifica_produto.lineEdit_10.setText('')
-                self.tela_busca_modifica_produto.lineEdit_12.setText('')
-                self.tela_busca_modifica_produto.lineEdit_11.setText('')  
+                self.resetar_lines_edite_produto_busca()
 
         else:
             QMessageBox.information(None, 'Atualizar Produto', 'Nescessario que todos os campos sejam preenchidos!')
 
-    def botaoRemoveProduto(self):
+
+    def botaoRemoveProduto(self):  
         #remover_produto(self,n_bebida)
-        cpf = self.tela_busca_modifica_produto.lineEdit_2.text()
+        cpf = self.tela_busca_modifica_produto.lineEdit_6.text()
 
         if(cpf != ''):
             if(self.cadastro.remover_produto(cpf)):
                 #print(self.cadastro.cliete)
                 QMessageBox.information(None, 'Remover Produto', 'Produto Removido!')
-                self.tela_busca_modifica_produto.lineEdit_6.setText('')
-                self.tela_busca_modifica_produto.lineEdit_3.setText('')
-                self.tela_busca_modifica_produto.lineEdit_7.setText('')
-                self.tela_busca_modifica_produto.lineEdit_14.setText('')
-                self.tela_busca_modifica_produto.lineEdit_15.setText('')
-                self.tela_busca_modifica_produto.lineEdit_8.setText('')
-                self.tela_busca_modifica_produto.lineEdit_9.setText('')
-                self.tela_busca_modifica_produto.lineEdit_10.setText('')
-                self.tela_busca_modifica_produto.lineEdit_12.setText('')
-                self.tela_busca_modifica_produto.lineEdit_11.setText('')  
-
-                self.cadastro.prdotos_todas = []
+                self.resetar_lines_edite_produto_busca()
+                self.rezetar_tabela_Fornecedor()
             else:
                 QMessageBox.information(None, 'Remover Produto', 'Nao foi possivel realziar a remocao!')
-                self.tela_busca_modifica_produto.lineEdit_6.setText('')
-                self.tela_busca_modifica_produto.lineEdit_3.setText('')
-                self.tela_busca_modifica_produto.lineEdit_7.setText('')
-                self.tela_busca_modifica_produto.lineEdit_14.setText('')
-                self.tela_busca_modifica_produto.lineEdit_15.setText('')
-                self.tela_busca_modifica_produto.lineEdit_8.setText('')
-                self.tela_busca_modifica_produto.lineEdit_9.setText('')
-                self.tela_busca_modifica_produto.lineEdit_10.setText('')
-                self.tela_busca_modifica_produto.lineEdit_12.setText('')
-                self.tela_busca_modifica_produto.lineEdit_11.setText('')  
+                self.resetar_lines_edite_produto_busca()  
         else:
             QMessageBox.information(None, 'Remover Produto', 'Nescessario pelomenos o campo do numero do produto prenchido!')
 

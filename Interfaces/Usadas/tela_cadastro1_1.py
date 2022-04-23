@@ -124,6 +124,13 @@ class Tela_Cadastro(object):
 "display: inline-block;\n"
 "border-radius: 5px;")
         self.cadastro_lineEdit_senha.setObjectName("cadastro_lineEdit_senha")
+
+        # ocultar senha
+        self.cadastro_lineEdit_senha.setInputMask("")
+        self.cadastro_lineEdit_senha.setText("")
+        self.cadastro_lineEdit_senha.setObjectName("login_lineEdit_senha")
+        self.cadastro_lineEdit_senha.setEchoMode(QtWidgets.QLineEdit.Password)
+        
         self.verticalLayout_3.addWidget(self.cadastro_lineEdit_senha)
         self.verticalLayout.addWidget(self.login_conteudo)
         self.login_confirmacao = QtWidgets.QFrame(self.centralwidget)

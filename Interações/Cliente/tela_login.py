@@ -78,6 +78,9 @@ class Tela_Login(object):
 "border-radius: 5px;")
         self.login_lineEdit_senha.setInputMask("")
         self.login_lineEdit_senha.setText("")
+        # Ocultar senha
+        self.login_lineEdit_senha.setEchoMode(QtWidgets.QLineEdit.Password)
+
         self.login_lineEdit_senha.setObjectName("login_lineEdit_senha")
         self.verticalLayout_4.addWidget(self.login_lineEdit_senha)
         self.verticalLayout_3.addWidget(self.frame_4)
