@@ -330,7 +330,7 @@ class Main(QMainWindow,Ui_Main):
         email = self.tela_cadastra_cliente.lineEdit_email.text()
         telefone = self.tela_cadastra_cliente.lineEdit_n_telefone.text()
 
-        if(nome !='' or cpf !='' or edereco !='' or data_de_nascimento !='' or email !='' or telefone !=''):
+        if(nome !='' and cpf !='' and edereco !='' and data_de_nascimento !='' and email !='' and telefone !=''):
             if(self.cadastro.cadastrar_cliente(nome,cpf,edereco,data_de_nascimento,email,telefone)):
                 QMessageBox.information(None, 'Cadastro Cliente', 'Cadastro realizado!')
                 #self.tela_cadastro.lineEdit_cadastro_nome.setText('')
@@ -343,15 +343,6 @@ class Main(QMainWindow,Ui_Main):
                 self.facade.reseta_lines_edite_cliente_cadastra()
         else:
             QMessageBox.information(None, 'Cadastro Cliente', 'Todos os campos devem ser preenchidos!')
-        
-    #def reseta_lines_edite_Cliente_busco(self):
-    #    self.tela_busca_modifica_cliente.lineEdit_cpf.setText('')
-    #    self.tela_busca_modifica_cliente.lineEdit_nome.setText('')
-    #    self.tela_busca_modifica_cliente.lineEdit_endereco.setText('')
-    #    self.tela_busca_modifica_cliente.lineEdit_nascimento.setDate(QDate(2000, 1, 1))
-    #    self.tela_busca_modifica_cliente.lineEdit_email.setText('')
-    #    self.tela_busca_modifica_cliente.lineEdit_telefone.setText('')
-    #    self.tela_busca_modifica_cliente.lineEdit_busca_cpf.setText('')
 
     def botaoBuscaClieten(self):
         cpf = self.tela_busca_modifica_cliente.lineEdit_busca_cpf.text()
@@ -429,14 +420,6 @@ class Main(QMainWindow,Ui_Main):
             self.tela_cadastra_fornecedor.textEdit_tabela_fornecedores.setItem(index, 3, QtWidgets.QTableWidgetItem(str(self.cadastro.fornecedor_todos[index][3])))
             self.tela_cadastra_fornecedor.textEdit_tabela_fornecedores.setItem(index, 4, QtWidgets.QTableWidgetItem(str(self.cadastro.fornecedor_todos[index][4])))
             self.tela_cadastra_fornecedor.textEdit_tabela_fornecedores.setItem(index, 5, QtWidgets.QTableWidgetItem(str(self.cadastro.fornecedor_todos[index][5])))
-
-    #def facade.reseta_lines_edite_fornecedor_cadastra(self):
-    #    self.tela_cadastra_fornecedor.lineEdit_razao_social.setText('')
-    #    self.tela_cadastra_fornecedor.lineEdit_cnpj.setText('')
-    #    self.tela_cadastra_fornecedor.lineEdit_nacionalidade.setText('')
-    #    self.tela_cadastra_fornecedor.lineEdit_endereco.setText('')
-    #    self.tela_cadastra_fornecedor.lineEdit_telefone.setText('')
-    #    self.tela_cadastra_fornecedor.lineEdit_pessoa.setText('')
 
     def botaoCadastraFornecedor(self):
         #razao_social,CNPJ,nacionalidade,endereco,telefone,passoa_contato
@@ -599,18 +582,6 @@ class Main(QMainWindow,Ui_Main):
         else:
             QMessageBox.information(None, 'Buscar Produto', 'Produto nao encontrado!')
             self.tela_busca_modifica_produto.lineEdit_2.setText('')
-
-    #def facade.resetar_lines_edite_produto_busca(self):
-    #    self.tela_busca_modifica_produto.lineEdit_6.setText('')
-    #    self.tela_busca_modifica_produto.lineEdit_3.setText('')
-    #    self.tela_busca_modifica_produto.lineEdit_7.setDate(QDate(2000, 1, 1))
-    #    self.tela_busca_modifica_produto.lineEdit_14.setDate(QDate(2000, 1, 1))
-    #    self.tela_busca_modifica_produto.lineEdit_15.setText('')
-    #    self.tela_busca_modifica_produto.lineEdit_8.setValue(0)
-    #    self.tela_busca_modifica_produto.lineEdit_9.setText('')
-    #    self.tela_busca_modifica_produto.lineEdit_10.setText('')
-    #    self.tela_busca_modifica_produto.lineEdit_12.setText('')
-    #    self.tela_busca_modifica_produto.lineEdit_11.setText('')
 
     def rezetar_tabela_Fornecedor(self):
         self.cadastro.prdotos_todas = []

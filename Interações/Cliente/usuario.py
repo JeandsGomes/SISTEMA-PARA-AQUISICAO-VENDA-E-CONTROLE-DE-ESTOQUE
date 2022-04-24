@@ -1,4 +1,5 @@
 import socket
+from proxy import Cliente
 
 #from mysql.connector.utils import print_buffer
 
@@ -10,6 +11,7 @@ class plataforma_funcionario():
     '''
 
     def __init__(self):
+        self.cliente = Cliente()
         self.funcionario = []
         self.vendas_todas = []
         self.vendas = []
@@ -50,7 +52,7 @@ class plataforma_funcionario():
         '''
         codigo = '0/'+nome+'/'+str(CPF)+'/'+data_de_ascimento+'/'+email+'/'+telefone+'/'+Cargo+'/'+senha
         try:
-            saida = self.conecxao_servidor(codigo)
+            saida = self.cliente.conecxao_servidor(codigo)
         except:
             return False
         #print(codigo)
@@ -65,7 +67,7 @@ class plataforma_funcionario():
         '''
         codigo = '1/'+str(cpf)+'/'+senha
         try:
-            saida = self.conecxao_servidor(codigo)
+            saida = self.cliente.conecxao_servidor(codigo)
             
         except:
             return False
@@ -81,7 +83,7 @@ class plataforma_funcionario():
     def cadastrar_cliente(self,nome,cpf,edereco,data_de_nascimento,email,telefone):        
         codigo = '2/'+nome+'/'+str(cpf)+'/'+edereco+'/'+data_de_nascimento+'/'+email+'/'+telefone
         try:
-            saida = self.conecxao_servidor(codigo)
+            saida = self.cliente.conecxao_servidor(codigo)
         except:
             return False
         #print(codigo)
@@ -93,7 +95,7 @@ class plataforma_funcionario():
     def buscar_clente(self,cpf):
         codigo = '3/'+str(cpf)
         try:
-            saida = self.conecxao_servidor(codigo)
+            saida = self.cliente.conecxao_servidor(codigo)
             
         except:
             return False
@@ -109,7 +111,7 @@ class plataforma_funcionario():
     def buscar_todos_clientes(self):
         codigo = '4/'+str(len(self.cliente_todos))
         try:
-            saida = self.conecxao_servidor(codigo)
+            saida = self.cliente.conecxao_servidor(codigo)
             
         except:
             return False
@@ -131,7 +133,7 @@ class plataforma_funcionario():
     def atualiza_cliente(self,nome,cpf,edereco,data_de_nascimento,email,telefone):
         codigo = '5/'+nome+'/'+str(cpf)+'/'+edereco+'/'+data_de_nascimento+'/'+email+'/'+telefone
         try:
-            saida = self.conecxao_servidor(codigo)
+            saida = self.cliente.conecxao_servidor(codigo)
         except:
             return False
         #print(codigo)
@@ -143,7 +145,7 @@ class plataforma_funcionario():
     def remover_cliente(self,cpf):
         codigo = '6/'+str(cpf)
         try:
-            saida = self.conecxao_servidor(codigo)
+            saida = self.cliente.conecxao_servidor(codigo)
         except:
             return False
         #print(codigo)
@@ -155,7 +157,7 @@ class plataforma_funcionario():
     def cadastra_fornecedor(self,razao_social,CNPJ,nacionalidade,endereco,telefone,passoa_contato):
         codigo = '7/'+razao_social+'/'+str(CNPJ)+'/'+nacionalidade+'/'+endereco+'/'+telefone+'/'+passoa_contato
         try:
-            saida = self.conecxao_servidor(codigo)
+            saida = self.cliente.conecxao_servidor(codigo)
         except:
             return False
         #print(codigo)
@@ -167,7 +169,7 @@ class plataforma_funcionario():
     def buscar_fornecedor(self,CNPJ):
         codigo = '8/'+str(CNPJ)
         try:
-            saida = self.conecxao_servidor(codigo)
+            saida = self.cliente.conecxao_servidor(codigo)
             
         except:
             return False
@@ -183,7 +185,7 @@ class plataforma_funcionario():
     def buscar_todos_fornecedores(self):
         codigo = '9/'+str(len(self.fornecedor_todos))
         try:
-            saida = self.conecxao_servidor(codigo)
+            saida = self.cliente.conecxao_servidor(codigo)
             
         except:
             return False
@@ -205,7 +207,7 @@ class plataforma_funcionario():
     def atualziar_fornecedor(self,razao_social,CNPJ,nacionalidade,endereco,telefone,passoa_contato):
         codigo = '10/'+razao_social+'/'+str(CNPJ)+'/'+nacionalidade+'/'+endereco+'/'+telefone+'/'+passoa_contato
         try:
-            saida = self.conecxao_servidor(codigo)
+            saida = self.cliente.conecxao_servidor(codigo)
         except:
             return False
         #print(codigo)
@@ -217,7 +219,7 @@ class plataforma_funcionario():
     def remover_fornecedor(self,CNPJ):
         codigo = '11/'+str(CNPJ)
         try:
-            saida = self.conecxao_servidor(codigo)
+            saida = self.cliente.conecxao_servidor(codigo)
         except:
             return False
         #print(codigo)
@@ -229,7 +231,7 @@ class plataforma_funcionario():
     def cadastra_produto(self,n_bebida,nome_da_bebida,data_de_fabricacao,data_de_validade,condicoes_de_armazenamento,quantidades,local_armazenado,valor_de_compra_UN,valor_revenda_UN,cnpj_fornecedor):
         codigo = '12/'+str(n_bebida)+'/'+nome_da_bebida+'/'+data_de_fabricacao+'/'+data_de_validade+'/'+condicoes_de_armazenamento+'/'+quantidades+'/'+local_armazenado+'/'+str(valor_de_compra_UN)+'/'+str(valor_revenda_UN)+'/'+str(cnpj_fornecedor)
         try:
-            saida = self.conecxao_servidor(codigo)
+            saida = self.cliente.conecxao_servidor(codigo)
         except:
             return False
         #print(codigo)
@@ -242,7 +244,7 @@ class plataforma_funcionario():
 
         codigo = '13/'+str(n_bebida)
         try:
-            saida = self.conecxao_servidor(codigo)
+            saida = self.cliente.conecxao_servidor(codigo)
             
         except:
             return False
@@ -258,7 +260,7 @@ class plataforma_funcionario():
     def buscar_produto_todos(self):
         codigo = '14/'+str(len(self.prdotos_todas))
         try:
-            saida = self.conecxao_servidor(codigo)
+            saida = self.cliente.conecxao_servidor(codigo)
             
         except:
             return False
@@ -280,7 +282,7 @@ class plataforma_funcionario():
     def atualizar_produto(self,n_bebida,nome_da_bebida,data_de_fabricacao,data_de_validade,condicoes_de_armazenamento,quantidades,local_armazenado,valor_de_compra_UN,valor_revenda_UN,cnpj_fornecedor):
         codigo = '15/'+str(n_bebida)+'/'+nome_da_bebida+'/'+data_de_fabricacao+'/'+data_de_validade+'/'+condicoes_de_armazenamento+'/'+quantidades+'/'+local_armazenado+'/'+str(valor_de_compra_UN)+'/'+str(valor_revenda_UN)+'/'+str(cnpj_fornecedor)
         try:
-            saida = self.conecxao_servidor(codigo)
+            saida = self.cliente.conecxao_servidor(codigo)
         except:
             return False
         #print(codigo)
@@ -292,7 +294,7 @@ class plataforma_funcionario():
     def remover_produto(self,n_bebida):
         codigo = '16/'+str(n_bebida)
         try:
-            saida = self.conecxao_servidor(codigo)
+            saida = self.cliente.conecxao_servidor(codigo)
         except:
             return False
         #print(codigo)
@@ -304,7 +306,7 @@ class plataforma_funcionario():
     def cadastrar_venda(self,forma_de_pagamento,data_da_venda,n_bebida,cpf_cliente,cpf_funcionario,senha_funcionario):
         codigo = '17/'+forma_de_pagamento+'/'+data_da_venda+'/'+str(n_bebida)+'/'+str(cpf_cliente)+'/'+str(cpf_funcionario)+'/'+senha_funcionario
         try:
-            saida = self.conecxao_servidor(codigo)
+            saida = self.cliente.conecxao_servidor(codigo)
         except:
             return False
         #print(codigo)
@@ -316,7 +318,7 @@ class plataforma_funcionario():
     def buscar_vendas_todas(self):
         codigo = '18/'+str(len(self.vendas_todas))
         try:
-            saida = self.conecxao_servidor(codigo)
+            saida = self.cliente.conecxao_servidor(codigo)
             
         except:
             return False
