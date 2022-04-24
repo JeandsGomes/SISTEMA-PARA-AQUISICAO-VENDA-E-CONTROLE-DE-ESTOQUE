@@ -22,30 +22,6 @@ class plataforma_funcionario():
         self.prdotos_todas = []
         self.prdotos = []
 
-    
-
-    def conecxao_servidor(self,codigo):
-        '''
-            Para os dados do cliente serem salvos, devera se conectar com o servidor do banco.
-
-            Após se conectar com o servidor será possivel fazer todas as operações disponíveis.
-
-            :parametro codigo: são as informaçoes com alteraçoes na conta de algum cliente no servidor.
-            :retorna as informações obtidas no servidor.
-        '''
-        
-        ip = 'localhost'
-        port = 8000
-        addr = ((ip, port)) #define a tupla de endereco
-        client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #AF_INET parametro para informar familia do protocolo
-        client_socket.connect(addr) #realizar conexao
-        client_socket.send(codigo.encode()) #envia mensagfem
-        print('entrada: '+codigo)
-        saida = client_socket.recv(1024).decode()
-        client_socket.close() #fecha conexao
-
-        return saida
-
     def cadastro_funcionario(self,nome,CPF,data_de_ascimento,email,telefone,Cargo,senha):
         '''
             Para cadastrar uma pessoa é preciso se conectar ao servidor do banco.

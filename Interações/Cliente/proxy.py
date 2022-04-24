@@ -53,7 +53,7 @@ o mesmo método em um objeto RealSubject vinculado.
 """
 class Proxy(Subject):
     def __init__(self) -> None:
-        self._real_subject = RealSubject()
+        self._real_subject = RealSubject() 
 
     def conecxao_servidor(self,codigo):
         return self._real_subject.conecxao_servidor(codigo)
